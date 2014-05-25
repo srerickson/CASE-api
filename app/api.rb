@@ -1,7 +1,5 @@
-require 'grape'
-
 class API < Grape::API
-  
+
   format :json
 
   get "/" do
@@ -10,8 +8,8 @@ class API < Grape::API
 
   post "/" do
     # All parameters will be stored in the model
-    thing = Thing.new params
-
+    puts params
+    thing = Thing.new(name: params[:name])
     if thing.save
       { thingId: thing.id }
     else
