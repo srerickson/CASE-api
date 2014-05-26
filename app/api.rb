@@ -11,6 +11,11 @@ class API < Grape::API
     Schema.all
   end
 
+  post "/schemas" do 
+    puts params[:schema]
+    Schema.create! params[:schema]
+  end
+
   # post "/" do
   #   # All parameters will be stored in the model
   #   puts params
