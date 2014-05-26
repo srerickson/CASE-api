@@ -3,11 +3,10 @@ class Schema
   include Mongoid::Timestamps
 
   field :name, type: String 
-  validates :name, presence: true
-
   field :description, type: String 
 
-  embeds_many :field_definitions
-  # has_many :field_definitions
-  #
+  validates :name, presence: true
+  
+  # embeds_many :field_definitions
+  embeds_many :field_sets 
 end

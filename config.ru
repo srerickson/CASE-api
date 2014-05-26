@@ -6,6 +6,7 @@ Mongoid.load!("config/mongoid.yml", :development)
 
 require 'case'
 require 'schema'
+require 'field_set'
 require 'field_definition'
 require 'field_value'
 
