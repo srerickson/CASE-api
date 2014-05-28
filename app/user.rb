@@ -24,9 +24,8 @@ class User
 
 
   # class method for validating credentials
-  def self.validate(user,pass)
-    user = User.where(email: "sr.erickson@gmail.com").first
-    if user
+  def self.validate(email,pass)
+    if user = User.where(email: email).first
       PasswordHash.validatePassword(pass, user.password_hash) ? user : false 
     else
       false
