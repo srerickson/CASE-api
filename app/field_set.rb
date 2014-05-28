@@ -10,7 +10,7 @@ class FieldSet
 
 
   def schemas
-  	Schema.where("field_set_ids" => self._id )
+    Schema.where("field_set_ids" => self._id )
   end
-
+  
 end

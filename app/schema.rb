@@ -16,7 +16,7 @@ class Schema
   protected
 
   def field_set_ids_are_object_ids
-   	self.field_set_ids ||= []
+    self.field_set_ids ||= []
     self.field_set_ids.each_with_index do |fs_id,i|
       unless fs_id.is_a? Moped::BSON::ObjectId
         begin
@@ -25,7 +25,7 @@ class Schema
           errors.add(:field_set_ids, e.message)
         end
       end
-    end 	
+    end   
   end
 
 

@@ -6,7 +6,7 @@ class User
 
   field :email, type: String
   field :name, type: String
-  field	:password_hash, type: String
+  field  :password_hash, type: String
 
   field :roles, type: Array
 
@@ -15,22 +15,22 @@ class User
 
 
   def password=(pass)
-  	self.password_hash = PasswordHash.createHash(pass)
+    self.password_hash = PasswordHash.createHash(pass)
   end
 
   def jwt_token 
-  	self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }.to_json
+    self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }.to_json
   end
 
 
   # class method for validating credentials
   def self.validate(user,pass)
-  	user = User.where(email: "sr.erickson@gmail.com").first
-  	if user
-  		PasswordHash.validatePassword(pass, user.password_hash) ? user : false 
-  	else
-  		false
-  	end
+    user = User.where(email: "sr.erickson@gmail.com").first
+    if user
+      PasswordHash.validatePassword(pass, user.password_hash) ? user : false 
+    else
+      false
+    end
   end
 
 
