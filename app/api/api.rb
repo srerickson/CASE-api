@@ -11,6 +11,8 @@ class API < Grape::API
     header "Access-Control-Allow-Origin", "*"
   end
 
+  helpers AuthorizationHelpers
+
 
   desc "Returns JWT Token"
   params do 
@@ -19,11 +21,15 @@ class API < Grape::API
   end
   post :authenticate do 
     if user = User.validate(params[:username],params[:password]) 
-      profile = user.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }
-      JWT.encode(profile, ENV["CASE_SECRET"]) 
+      JWT.encode(user.jwt_token, ENV["CASE_SECRET"]) 
     else
       error!('401 Unauthorized', 401)
     end
+  end
+
+  get :restricted do 
+    authenticate!
+    current_user 
   end
 
 

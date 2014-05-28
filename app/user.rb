@@ -18,8 +18,10 @@ class User
     self.password_hash = PasswordHash.createHash(pass)
   end
 
-  def jwt_token 
-    self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }.to_json
+  def jwt_token() 
+    token = self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }
+    token['exp'] = 1.minutes.from_now.to_i 
+    token 
   end
 
 
