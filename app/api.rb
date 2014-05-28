@@ -102,7 +102,7 @@ class API < Grape::API
         end
 
       end # namespace :field_definitions
-    end # route_param :field_set_id
+    end # route_param :id
   end # namespace :field_sets
 
 
