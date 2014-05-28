@@ -19,9 +19,7 @@ class User
   end
 
   def jwt_token() 
-    token = self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }
-    token['exp'] = 1.minutes.from_now.to_i 
-    token 
+    self.attributes.select { |key| ["_id", "email", "name","updated_at"].include? key }
   end
 
 

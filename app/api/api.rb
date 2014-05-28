@@ -21,7 +21,7 @@ class API < Grape::API
   end
   post :authenticate do 
     if user = User.validate(params[:username],params[:password]) 
-      JWT.encode(user.jwt_token, ENV["CASE_SECRET"]) 
+      JWT.encode(user.jwt_token, ENV["CASE_SECRET"],'HS256', {exp: 5.days.from_now.to_i}) 
     else
       error!('401 Unauthorized', 401)
     end
