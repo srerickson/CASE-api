@@ -1,6 +1,12 @@
 class FieldSetsAPI < Grape::API
 
+  helpers AuthorizationHelpers
+
   namespace :field_sets do
+
+    # before do 
+    #   authenticate!
+    # end
 
     desc "List Field Sets"
     get do 

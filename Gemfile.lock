@@ -38,6 +38,7 @@ GEM
     hashie (2.1.1)
     i18n (0.6.9)
     ice_nine (0.11.0)
+    jwt (1.0.0)
     listen (2.7.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -85,6 +86,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   grape
+  jwt
   mongoid (~> 3.1.6)
   racksh
   rerun
