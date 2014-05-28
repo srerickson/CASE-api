@@ -8,8 +8,6 @@ class API < Grape::API
 
 
 
-
-
   namespace :schemas do
 
     desc "Lists Schemas."
@@ -22,9 +20,6 @@ class API < Grape::API
       Schema.create params[:schema]
     end
 
-    #
-    # SINGLE SCHEMA ROUTES
-    #
     route_param :id do
 
       desc "Retrieves a Schema."
@@ -42,70 +37,74 @@ class API < Grape::API
         Schema.find(params[:id]).destroy
       end
 
-      #
-      # NESTED FIELD SET ROUTES
-      #
-      namespace :field_sets do
+    end # route_param :id
+  end # namespace :schemas
 
-        desc "Creates a new Field Set in the Schema"
+
+
+
+  namespace :field_sets do
+
+    desc "List Field Sets"
+    get do 
+      FieldSet.all
+    end
+
+    desc "Creates a new Field Set"
+    post do 
+      FieldSet.create(params[:field_set])
+    end
+
+    route_param :id do 
+
+      desc "Show Field Set"
+      get do
+        FieldSet.find(params[:id])
+      end
+
+      desc "Updates a Field Set"
+      put do
+        FieldSet.find(params[:id]).update_attributes(params[:field_set])
+      end
+
+      desc "Destroys a Field Set"
+      delete do
+        FieldSet.find(params[:id]).destroy()
+      end
+
+      #
+      # NESTED FIELD DEFINITIONS
+      #
+      namespace :field_definitions do
+
+        desc "Creates a new Field Definition in the Field Set"
         post do 
-          schema = Schema.find(params[:id])
-          schema.field_set.create(params[:field_set])
+          FieldSet.find(params[:id])
+            .field_definitions.create(params[:field_definition])
         end
 
-        route_param :field_set_id do 
+        route_param :field_definition_id do
 
-          desc "Updates a Schema's Field Set"
+          desc "Updates a Field Definition in the Field Set"
           put do
-            Schema.find(params[:id])
-              .field_sets.find(params[:field_set_id])
-              .update_attributes(params[:field_set])
+            FieldSet.find(params[:id])
+              .field_definitions.find(params[:field_definition_id])
+              .update_attributes(params[:field_definition])
           end
 
-          desc "Destroys a Schema's Field Set"
-          delete do
-            Schema.find(params[:id])
-              .field_sets.find(params[:field_set_id])
+          desc "Destroys a Field Definition in the Field Set"
+          delete do 
+            FieldSet.find(params[:id])
+              .field_definitions.find(params[:field_definition_id])
               .destroy()
           end
 
-          #
-          # NESTED FIELD DEFINITIONS
-          #
-          namespace :field_definitions do
+        end
 
-            desc "Creates a new Field Definition in the Schema's Field Set"
-            post do 
-              Schema.find(params[:id])
-                .field_sets.find(params[:field_set_id])
-                .field_definitions.create!(params[:field_definition])
-            end
+      end # namespace :field_definitions
+    end # route_param :field_set_id
+  end # namespace :field_sets
 
-            route_param :field_definition_id do
-
-              desc "Updates a Field Definition in the Schema's Field Set"
-              put do
-                Schema.find(params[:id])
-                      .field_sets.find(params[:field_set_id])
-                      .field_definitions.find(params[:field_definition_id])
-                      .update_attributes(params[:field_definition])
-              end
-
-              desc "Destroys a Field Definition in the Schema's Field Set"
-              delete do 
-                Schema.find(params[:id])
-                  .field_sets.find(params[:field_set_id])
-                  .field_definitions.find(params[:field_definition_id])
-                  .destroy()
-              end
-
-            end
-
-          end # namespace :field_definitions
-        end # route_param :field_set_id
-      end # namespace :field_sets
-    end # route_param :id
-  end # namespace :schemas
 
 
 

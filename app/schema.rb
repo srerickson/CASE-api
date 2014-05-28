@@ -3,10 +3,12 @@ class Schema
   include Mongoid::Timestamps
 
   field :name, type: String 
-  field :description, type: String 
+  field :description, type: String
+  field :field_sets, type: Array # of FieldSet ObjectIds
 
   validates :name, presence: true
-  
-  # embeds_many :field_definitions
-  embeds_many :field_sets 
+
+	# TODO - validated field_sets are all correct type   
+
+
 end

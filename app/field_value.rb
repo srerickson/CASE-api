@@ -10,12 +10,8 @@ class FieldValue
 
   field :value, type: String
 
-  def parent_schema
-    @parent_schema ||= Schema.where("field_sets.field_definitions._id" => field_definition_id).first
-  end
-
   def parent_field_set
-    @parent_field_set ||= parent_schema.nil? ? nil : parent_schema.field_sets.detect{|fs| fs.field_definitions.map(&:_id).include?  field_definition_id }
+    @parent_field_set ||= FieldSet.where("field_definitions._id" => field_definition_id).first
   end
 
   def field_definition
