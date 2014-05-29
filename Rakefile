@@ -27,6 +27,15 @@ namespace :db do
   end
 
 
+  desc "Rollback the database"
+  task(:rollback => :environment) do
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+    ActiveRecord::Migration.verbose = true
+    steps = ENV["STEPS"].to_i || 1
+    ActiveRecord::Migrator.rollback("db/migrate", steps)
+  end
+
+
 
   desc "create an ActiveRecord migration in ./db/migrate"
   task(:create_migration => :environment) do

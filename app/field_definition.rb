@@ -1,14 +1,8 @@
-class FieldDefinition
-  # include Mongoid::Document
+class FieldDefinition < ActiveRecord::Base
 
-  # field :name, type: String 
-  # field :param, type: String
-  # field :description, type: String 
-  # field :order, type: Integer 
+  belongs_to :field_set
   
-  # validates :name, presence: true
-  # #validates :param, presence: true, uniqueness: true
-
-  # embedded_in :field_set 
+  validates_presence_of :name
+  validates_presence_of :field_set
 
 end

@@ -1,9 +1,10 @@
-class FieldValue
-  # include Mongoid::Document
-  # include Mongoid::Timestamps
+class FieldValue < ActiveRecord::Base
 
-  # belongs_to :case    
-  # validates_presence_of :case
+  belongs_to :field_definition
+  has_one :field_set, through: :field_definition
+
+  belongs_to :case    
+  validates_presence_of :case
 
   # field :field_definition_id, type: Moped::BSON::ObjectId
   # validates_presence_of :field_definition_id

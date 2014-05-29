@@ -46,7 +46,7 @@ class CasesAPI < Grape::API
         end
 
         desc "Creates a new Field Value in the Case"
-        post do 
+        post do
           Case.find(params[:id])
             .field_values.create(params[:field_value])
         end

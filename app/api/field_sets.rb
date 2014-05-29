@@ -22,7 +22,7 @@ class FieldSetsAPI < Grape::API
 
       desc "Show Field Set"
       get do
-        FieldSet.find(params[:id])
+        FieldSet.includes(:field_definitions).find(params[:id])
       end
 
       desc "Updates a Field Set"

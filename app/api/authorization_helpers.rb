@@ -5,7 +5,7 @@ module AuthorizationHelpers
   def current_user
     begin
       @jwt ||= JWT.decode(headers['Authorization'], ENV['CASE_SECRET'])
-      uid = @jwt[0]['_id']
+      uid = @jwt[0]['id']
       exp = @jwt[1]['exp']
       @current_user ||= User.find(uid)
       Time.now.to_i > exp ? nil : @current_user 
@@ -14,7 +14,7 @@ module AuthorizationHelpers
       # TODO: Token expiration date
     rescue JWT::DecodeError
       nil
-    rescue Mongoid::Errors::DocumentNotFound
+    rescue ActiveRecord::RecordNotFound
       nil
     end
   end
