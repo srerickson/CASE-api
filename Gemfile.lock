@@ -1,20 +1,25 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    activemodel (3.2.18)
-      activesupport (= 3.2.18)
-      builder (~> 3.0.0)
-    activesupport (3.2.18)
-      i18n (~> 0.6, >= 0.6.4)
-      multi_json (~> 1.0)
+    activemodel (4.1.1)
+      activesupport (= 4.1.1)
+      builder (~> 3.1)
+    activerecord (4.1.1)
+      activemodel (= 4.1.1)
+      activesupport (= 4.1.1)
+      arel (~> 5.0.0)
+    activesupport (4.1.1)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    arel (5.0.1.20140414130214)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    bson (1.10.1)
-    bson_ext (1.10.1)
-      bson (~> 1.10.1)
-    builder (3.0.4)
+    builder (3.2.2)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coercible (1.0.0)
@@ -38,20 +43,16 @@ GEM
     hashie (2.1.1)
     i18n (0.6.9)
     ice_nine (0.11.0)
+    json (1.8.1)
     jwt (1.0.0)
     listen (2.7.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
-    mongoid (3.1.6)
-      activemodel (~> 3.2)
-      moped (~> 1.4)
-      origin (~> 1.0)
-      tzinfo (~> 0.3.29)
-    moped (1.5.2)
+    minitest (5.3.4)
     multi_json (1.10.1)
     multi_xml (0.5.5)
-    origin (1.1.0)
+    pg (0.17.1)
     rack (1.5.2)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -71,9 +72,10 @@ GEM
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     timers (1.1.0)
-    tzinfo (0.3.39)
+    tzinfo (1.2.0)
+      thread_safe (~> 0.1)
     virtus (1.0.2)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -84,10 +86,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
+  activerecord
   grape
   jwt
-  mongoid (~> 3.1.6)
+  pg
   racksh
   rerun
   thin

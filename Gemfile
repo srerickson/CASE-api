@@ -1,8 +1,12 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem "grape"
-gem "mongoid", "~> 3.1.6"
-gem "bson_ext"
+# gem "mongoid", "~> 3.1.6"
+# gem "bson_ext"
+
+gem "pg"
+gem "activerecord"
+
 gem "thin"
 gem "jwt"
 

@@ -1,17 +1,17 @@
 require 'password_hash'
 
-class User
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class User < ActiveRecord::Base
+  # include Mongoid::Document
+  # include Mongoid::Timestamps
 
-  field :email, type: String
-  field :name, type: String
-  field  :password_hash, type: String
+  # field :email, type: String
+  # field :name, type: String
+  # field  :password_hash, type: String
 
-  field :roles, type: Array
+  # field :roles, type: Array
 
-  validates_presence_of :name, :email, :password_hash
-  validates_uniqueness_of :email 
+  # validates_presence_of :name, :email, :password_hash
+  # validates_uniqueness_of :email 
 
 
   def password=(pass)

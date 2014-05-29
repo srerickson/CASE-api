@@ -1,8 +1,8 @@
 require 'jwt'
 require 'authorization_helpers'
 require 'cases'
-require 'schemas'
-require 'field_sets'
+# require 'schemas'
+# require 'field_sets'
 
 class API < Grape::API
 
@@ -34,8 +34,8 @@ class API < Grape::API
   end
 
 
-  mount ::SchemasAPI
-  mount ::FieldSetsAPI
+  # mount ::SchemasAPI
+  # mount ::FieldSetsAPI
   mount ::CasesAPI
 
 
