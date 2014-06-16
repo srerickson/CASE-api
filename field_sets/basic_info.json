@@ -2,8 +2,7 @@
   "field_set": {
     "name": "Basic Info",
     "description": "What kind of entity is it? Where does it live and on what does it survive? What \"style\" or \"brand\" identifies it, how might it be classified? Is this project unlike any other or one of a clearly defined species?",
-    "order": 1,
-    "field_definitions": [
+    "field_definitions_attributes": [
       {"name": "URL"},
       {"name": "Logo"},
       {"name": "Other Files"},
