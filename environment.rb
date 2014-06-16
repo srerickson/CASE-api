@@ -4,6 +4,7 @@ ENV["CASE_SECRET"] ||= "89072a1966rf0384470918732409831734hh0987d093485790485709
 
 require 'rubygems'
 require 'grape'
+require 'hashie_rails'
 require 'pg'
 require 'active_record'
 
