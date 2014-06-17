@@ -19,11 +19,106 @@
       },{
         "name": "Habitat",
         "param": "habitat",
-        "order": 3
+        "order": 3,
+        "value_type": "select",
+        "value_options": {
+          "select": [
+            {
+              "id": 1,
+              "name": "UNIX + Internet",
+              "description": "Projects that directly interacts with or depends on the ecology of low-level UNIX-based tools and Internet-based services such as UNIX operating systems, C compilers, source code management systems (SCM), POSIX standard components, internet protocols and services.  "
+            },{
+              "id": 2,
+              "name": "AppStore",
+              "description": "Any of various platforms that provide \"apps\" which are tied (tethered) to specific devices, specific software development platforms and/or sold through specific outlets (like the Apple App Store)."
+            },{
+              "id": 3,
+              "name": "API/Application Specific",
+              "description": "Any of various projects that depend on an Application Programming Interface (open or not) to allow for the existence of the service (e.g. Google Maps, Facebook's Graph API)."
+            },{
+              "id": 4,
+              "name": "Gaming Environments/Platforms",
+              "description": "Games or persistent worlds that rely on specific software or hardware environments (which may in turn rely on other components and services) and cannot be accessed without that software/hardware."
+            },{
+              "id": 5,
+              "name": "HTML, HTTP, and Associated Services",
+              "description": "Primarily web-based.  Uses assorted tools and technologies that are primarily accessible through ports like http, https, etc. "
+            },{
+              "id": 6,
+              "name": "Television and Internet Video",
+              "description": "Any of various projects those primary ecology is moving visual media."
+            },{
+              "id": 7,
+              "name": "Wiki",
+              "description": "Wiki-powered website for community organizing, documentation and related projects"
+            },{
+              "id": 8,
+              "name": "IRC",
+              "description": "Internet Relay Chat "
+            },{
+              "id": 9,
+              "name": "Darknet",
+              "description": "Private, anonymous internetworked machines that are not accessible via Internet without certain applications (Tor, GNUnet,  VPN clients, P2P clients). Examples include but are not limited to: Freenet, GNUnet, Inivisible Internet Project, Onionland."
+            },{
+              "id": 10,
+              "name": "Mobile",
+              "description": "Operates primarily as a stand-alone application on a suitable mobile device (phone, tablet. May be downloaded via an app store."
+            }
+
+          ]
+        }
       },{
         "name": "Classification",
         "param": "classification",
-        "order": 4
+        "order": 4,
+        "value_type": "select",
+        "value_options":[
+          {
+            "id": 1,
+            "name": "FOSS",
+            "description": "Free and Open Source Software"
+          },{
+            "id": 3,
+            "name": "Social Networking",
+            "description": "Internet-based projects and companies specialized in social networking"
+          },{
+            "id": 4,
+            "name": "Education",
+            "description": "Educational platforms and projects based on the Internet"
+          },{
+            "id": 5,
+            "name": "Science and/or Engineering",
+            "description": "Projects that allow participation in science or engineering, such as citizen science, and including medical research"
+          },{
+            "id": 6,
+            "name": "Citizen Journalism",
+            "description": "user contributed news, video, etc."
+          },{
+            "id": 7,
+            "name": "Games/Persistent Worlds",
+            "description": "online games, role-playing games, persistent virtual worlds etc."
+          },{
+            "id": 8,
+            "name": "Craft, DIY, Consumer goods",
+            "description": "Projects that enable participation in making, remaking or learning how to make things, often for sale."
+          },{
+            "id": 9,
+            "name": "Activist",
+            "description": "groups organized for social or political change; independent media organizations; hacktivists; advocates and other coalitions."
+          },{
+            "id": 10,
+            "name": "Internet Forum / Mailing List",
+            "description": "Discussion Forums, Image Boards, Mailing Lists, Underground communities etc."
+          },{
+            "id": 11,
+            "name": "Culture Industry",
+            "description": "Media making from mainstream to remix to participatory/fan culture."
+          },{
+            "id": 13,
+            "name": "Social Entrepreneurialism",
+            "description": "Focused on volunteerism, fundraising, or cause-related participation"
+          }
+        ]
       },{
         "name": "Brand",
         "param": "brand",
