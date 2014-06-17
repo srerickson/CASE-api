@@ -1,0 +1,53 @@
+{
+  "field_set": {
+    "name": "Structure",
+    "param": "structure",
+    "description": "One working hypothesis in this project is that in any instance of participation (real or imagined) there are two kinds of organizations: formally organized, funded or legally sanctioned entities (Formal Social Enterprises or FSEs) and informally organized, more or less open, and fluid publics (Organized Publics or OPs). Cases that do not appear to have this dyadic structure could possibly reduce to familiar organizational forms (e.g. a corporation and its market of consumers; a mass media journalistic organization and its reading public, an acephalous social movement etc.). Information in this section should help outline the basic size, extent and relationship of these two entities.",
+    "field_definitions_attributes": [
+      {
+        "name": "FSE Name",
+        "param": "fse_name",
+        "description": "What is the name of the formally organized or legally recognized entity (FSE)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?",
+        "order": 0
+      },{
+        "name": "FSE Organization Style",
+        "param": "fse_org_style",
+        "order": 1
+      },{
+        "name": "FSE Owner/Founder",
+        "param": "fse_owner_founder",
+        "order": 2
+      },{
+        "name": "FSE Significant Members",
+        "param": "fse_significant_member",
+        "order": 3
+      },{
+        "name": "FSE Mission Statement",
+        "param": "fse_mission_statement",
+        "order": 4
+      },{
+        "name": "OP Name",
+        "param": "op_name",
+        "description": "What is the name of the formally organized or legally recognized entity (OP)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?",
+        "order": 5
+      },{
+        "name": "OP Organization Style",
+        "param": "op_org_style",
+        "order": 6
+      },{
+        "name": "OP Founder/VIPs",
+        "param": "op_vip_founders",
+        "order": 7
+      },{
+        "name": "OP Typical Members",
+        "param": "op_typical_member",
+        "order": 8
+      },{
+        "name": "Is the OP self aware?",
+        "param": "foritself",
+        "description": "Is the OP in question aware of itself as an entity? Does it actively promote a sense of belonging, community or participation? Or is it identified by a second order observation of people, behavior, or designed to display \"emergent\" behavior, or the effects of collective behavior?",
+        "order": 9
+      }
+    ]
+  }
+}

@@ -1,16 +1,34 @@
 {
   "field_set": {
     "name": "Basic Info",
+    "param": "basic_info",
     "description": "What kind of entity is it? Where does it live and on what does it survive? What \"style\" or \"brand\" identifies it, how might it be classified? Is this project unlike any other or one of a clearly defined species?",
     "field_definitions_attributes": [
-      {"name": "URL"},
-      {"name": "Logo"},
-      {"name": "Other Files"},
-      {"name": "Habitat"},
-      {"name": "Classification"},
       {
+        "name": "URL",
+        "param": "url",
+        "order": 0
+      },{
+        "name": "Logo",
+        "param": "logo",
+        "order": 1
+      },{
+        "name": "Other Files",
+        "param": "other_files",
+        "order": 2
+      },{
+        "name": "Habitat",
+        "param": "habitat",
+        "order": 3
+      },{
+        "name": "Classification",
+        "param": "classification",
+        "order": 4
+      },{
         "name": "Brand",
-        "description": "Describe how the brand / logo / visual identity is positioned."
+        "param": "brand",
+        "description": "Describe how the brand / logo / visual identity is positioned.",
+        "order": 5
       }
     ]
   }
