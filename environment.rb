@@ -1,9 +1,10 @@
-$:.unshift("./app","./app/api","./libs")
+$:.unshift("./app","./app/api","./app/serializers","./libs")
 
 ENV["CASE_SECRET"] ||= "89072a1966rf0384470918732409831734hh0987d09348579048570987230498572asdfasdf014895"
 
 require 'rubygems'
 require 'grape'
+require 'grape-active_model_serializers'
 require 'hashie_rails'
 require 'pg'
 require 'active_record'
@@ -17,11 +18,15 @@ ActiveRecord::Base.establish_connection(
 )
 
 
+
 require 'user'
 require 'case'
 require 'schema'
 require 'field_set'
 require 'field_definition'
 require 'field_value'
+
+# TODO: consider require_all gem 
+require 'field_set_serializer'
 
 require 'api/api'

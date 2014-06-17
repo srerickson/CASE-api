@@ -6,6 +6,8 @@ gem "grape"
 
 gem 'hashie_rails'
 
+gem 'grape-active_model_serializers'
+
 gem "pg"
 gem "activerecord"
 

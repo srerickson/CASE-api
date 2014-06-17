@@ -7,6 +7,7 @@ require 'field_sets'
 class API < Grape::API
 
   format :json
+  formatter :json, Grape::Formatter::ActiveModelSerializers
 
   before do
     header "Access-Control-Allow-Origin", "*"
