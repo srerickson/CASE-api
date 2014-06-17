@@ -16,7 +16,7 @@ echo "... authorized?: $AUTH"
 
 FS_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
-     -d basic_info.json \
+     -d @basic_info.json \
      -H "Authorization: $TOKEN" \
      http://localhost:3000/field_sets | jsawk "return this.id" ` 
 echo "... created Basic Info field set with id: $FS_ID"
@@ -24,7 +24,7 @@ echo "... created Basic Info field set with id: $FS_ID"
 
 FS_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
-     -d structure.json \
+     -d @structure.json \
      -H "Authorization: $TOKEN" \
      http://localhost:3000/field_sets | jsawk "return this.id" ` 
 echo "... created structure field set with id: $FS_ID"
