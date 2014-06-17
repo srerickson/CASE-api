@@ -8,7 +8,7 @@ require 'grape-active_model_serializers'
 require 'hashie_rails'
 require 'pg'
 require 'active_record'
-
+require 'require_all'
 
 ActiveRecord::Base.establish_connection(
   :adapter  => 'postgresql',
@@ -18,15 +18,7 @@ ActiveRecord::Base.establish_connection(
 )
 
 
-
-require 'user'
-require 'case'
-require 'schema'
-require 'field_set'
-require 'field_definition'
-require 'field_value'
-
-# TODO: consider require_all gem 
-require 'field_set_serializer'
+require_all 'app/models'
+require_all 'app/serializers'
 
 require 'api/api'

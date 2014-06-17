@@ -13,7 +13,7 @@ gem "activerecord"
 
 gem "thin"
 gem "jwt"
-
+gem 'require_all'
 
 group :development do 
   gem "rerun"
