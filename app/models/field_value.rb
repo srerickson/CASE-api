@@ -1,9 +1,9 @@
 class FieldValue < ActiveRecord::Base
 
-  belongs_to :field_definition
+  belongs_to :field_definition, inverse_of: :field_values
   has_one :field_set, through: :field_definition
 
-  belongs_to :case    
+  belongs_to :case, inverse_of: :field_values  
   validates_presence_of :case
 
   # field :field_definition_id, type: Moped::BSON::ObjectId

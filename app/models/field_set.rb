@@ -1,6 +1,7 @@
 class FieldSet < ActiveRecord::Base
 
-  validates_presence_of :name
+  validates_presence_of :name, :param
+  validates_uniqueness_of :param 
   
   has_many :field_definitions, dependent: :destroy, inverse_of: :field_set
 
