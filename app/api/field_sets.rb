@@ -9,7 +9,7 @@ class FieldSetsAPI < Grape::API
     # end
 
     desc "List Field Sets"
-    get do 
+    get "/", each_serializer: CompactFieldSetSerializer do 
       FieldSet.all
     end
 

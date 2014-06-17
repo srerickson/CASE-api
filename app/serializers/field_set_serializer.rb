@@ -1,6 +1,4 @@
-class FieldSetSerializer < ActiveModel::Serializer
-
-  attributes :id, :name, :param, :description
+class FieldSetSerializer < CompactFieldSetSerializer 
 
   has_many :field_definitions
 

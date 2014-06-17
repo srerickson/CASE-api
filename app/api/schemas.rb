@@ -3,8 +3,8 @@ class SchemasAPI < Grape::API
   namespace :schemas do
 
     desc "Lists Schemas."
-    get do 
-      Schema.all
+    get "/", each_serializer: CompactSchemaSerializer do 
+      Schema.all 
     end
 
     desc "Creates a Schema."
