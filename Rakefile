@@ -1,19 +1,22 @@
-$:.unshift('./',"./app","./app/api","./libs")
+Dir.glob('libs/tasks/*.rake').each { |r| import r }
 
-require 'environment.rb'
+
 require 'fileutils'
 
+task :environment do 
+  puts "loading environment ... "
+  $:.unshift('./') 
+  require 'environment.rb'
+end
+
+
 desc "API Routes"
-task :routes do
+task routes: :environment do
   ::API.routes.each do |api|
     method = api.route_method.ljust(10)
     path = api.route_path
     puts "     #{method} #{path}"
   end
-end
-
-
-task :environment do 
 end
 
 
