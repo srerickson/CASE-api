@@ -1,29 +1,15 @@
 class FieldSet < ActiveRecord::Base
 
-  validates_presence_of :name, :param
-  validates_uniqueness_of :param 
-  
-  has_many :field_definitions, dependent: :destroy, inverse_of: :field_set
+  belongs_to :schema, inverse_of: :field_sets
 
-  # def schemas
-  #   Schema.where("field_set_ids" => self._id )
-  # end
+  has_many :field_definitions, -> {order(:order)},
+                               dependent: :destroy, 
+                               inverse_of: :field_set
+                               
+  validates_presence_of :name, :param, :schema
+  validates_uniqueness_of :param, scope: :schema_id 
   
   accepts_nested_attributes_for :field_definitions, allow_destroy: true
-
-  before_destroy :remove_from_schemas
-
-  def schemas
-    Schema.where("%{id} = ANY (field_set_ids)" % {id: id})
-    #where('tags @> ARRAY[?]', ['ruby', 'development'])
-  end
-
-
-  protected
-
-  def remove_from_schemas
-    schemas.each{ |s| s.update_attributes(field_set_ids: s.field_set_ids - [id]) }
-  end
 
 
 end

@@ -2,6 +2,7 @@
   "field_set": {
     "name": "Structure",
     "param": "structure",
+    "order": 2,
     "description": "One working hypothesis in this project is that in any instance of participation (real or imagined) there are two kinds of organizations: formally organized, funded or legally sanctioned entities (Formal Social Enterprises or FSEs) and informally organized, more or less open, and fluid publics (Organized Publics or OPs). Cases that do not appear to have this dyadic structure could possibly reduce to familiar organizational forms (e.g. a corporation and its market of consumers; a mass media journalistic organization and its reading public, an acephalous social movement etc.). Information in this section should help outline the basic size, extent and relationship of these two entities.",
     "field_definitions_attributes": [
       {

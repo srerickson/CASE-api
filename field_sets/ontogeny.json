@@ -2,6 +2,7 @@
   "field_set": {
     "name": "Ontogeny",
     "param": "ontogeny",
+    "order": 3,
     "description": "Ontogeny covers the historical formation of the Bird. Many entities in this database are changing quickly, so this is a place to record the changes each case has been through from its origin to now. When was it founded, does it still exist, what stages has it gone through (either self-described or discovered through research/interview). In particular, how is the FSE/OP relationship related to its formation (did it start as an OP and create an FSE as it grew, or start as an FSE and try to magic an OP into existence, or neither?)",
     "field_definitions_attributes": [
       {

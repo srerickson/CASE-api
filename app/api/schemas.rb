@@ -1,3 +1,5 @@
+require 'field_sets'
+
 class SchemasAPI < Grape::API
 
   namespace :schemas do
@@ -12,24 +14,26 @@ class SchemasAPI < Grape::API
       Schema.create params[:schema]
     end
 
-    route_param :id do
+    route_param :schema_id do
 
       desc "Retrieves a Schema."
       get do
-        Schema.find(params[:id])
+        Schema.find(params[:schema_id])
       end
 
       desc "Updates a Schema."
       put do
-        Schema.find(params[:id]).update_attributes(params[:schema])
+        Schema.find(params[:schema_id]).update_attributes(params[:schema])
       end
 
       desc "Deletes a Schema."
       delete do
-        Schema.find(params[:id]).destroy
+        Schema.find(params[:schema_id]).destroy
       end
 
-    end # route_param :id
+      mount ::FieldSetsAPI
+
+    end # route_param :schema_id
   end # namespace :schemas
 
 end

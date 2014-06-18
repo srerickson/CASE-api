@@ -2,6 +2,7 @@
   "field_set": {
     "name": "Metadata",
     "param": "metadata",
+    "order": 7,
     "field_definitions_attributes": [  
       {
         "param": "birder_credits",

@@ -2,6 +2,7 @@
   "field_set": {
     "name": "Basic Info",
     "param": "basic_info",
+    "order": 1,
     "description": "What kind of entity is it? Where does it live and on what does it survive? What \"style\" or \"brand\" identifies it, how might it be classified? Is this project unlike any other or one of a clearly defined species?",
     "field_definitions_attributes": [
       {

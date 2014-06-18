@@ -1,38 +1,41 @@
+# This should be mounted by Schema
+
 class FieldSetsAPI < Grape::API
 
   helpers AuthorizationHelpers
 
   namespace :field_sets do
 
-    # before do 
-    #   authenticate!
-    # end
+    before do 
+      @schema = Schema.find(params[:schema_id])
+      # authenticate!
+    end
 
     desc "List Field Sets"
     get "/", each_serializer: CompactFieldSetSerializer do 
-      FieldSet.all
+      @schema.field_sets 
     end
 
     desc "Creates a new Field Set"
     post do 
-      FieldSet.create(params[:field_set])
+      @schema.field_sets.create(params[:field_set])
     end
 
-    route_param :id do 
+    route_param :field_set_id do 
 
       desc "Show Field Set"
       get do
-        FieldSet.includes(:field_definitions).find(params[:id])
+        @schema.field_sets.find(params[:field_set_id])
       end
 
       desc "Updates a Field Set"
       put do
-        FieldSet.find(params[:id]).update_attributes(params[:field_set])
+        @schema.field_sets.find(params[:field_set_id]).update_attributes(params[:field_set])
       end
 
       desc "Destroys a Field Set"
       delete do
-        FieldSet.find(params[:id]).destroy()
+        @schema.field_sets.find(params[:field_set_id]).destroy()
       end
 
       #
@@ -42,22 +45,22 @@ class FieldSetsAPI < Grape::API
 
         desc "Creates a new Field Definition in the Field Set"
         post do 
-          FieldSet.find(params[:id])
-            .field_definitions.create(params[:field_definition])
+          @schema.field_sets.find(params[:field_set_id])
+            .field_definitions.create!(params[:field_definition])
         end
 
         route_param :field_definition_id do
 
           desc "Updates a Field Definition in the Field Set"
           put do
-            FieldSet.find(params[:id])
+            @schema.field_sets.find(params[:field_set_id])
               .field_definitions.find(params[:field_definition_id])
               .update_attributes(params[:field_definition])
           end
 
           desc "Destroys a Field Definition in the Field Set"
           delete do 
-            FieldSet.find(params[:id])
+            @schema.field_sets.find(params[:field_set_id])
               .field_definitions.find(params[:field_definition_id])
               .destroy()
           end
@@ -65,7 +68,7 @@ class FieldSetsAPI < Grape::API
         end
 
       end # namespace :field_definitions
-    end # route_param :id
+    end # route_param :field_set_id
   end # namespace :field_sets
 
 

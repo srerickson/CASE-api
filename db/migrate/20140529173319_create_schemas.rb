@@ -4,11 +4,9 @@ class CreateSchemas < ActiveRecord::Migration
       t.string  :name
       t.string  :param
       t.text    :description
-      t.integer	:field_set_ids, array: true, default: []
       t.integer :user_id
       t.timestamps
     end
-    add_index  :schemas, :field_set_ids, using: 'gin'
   end
 
   def self.down

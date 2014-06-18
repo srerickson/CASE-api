@@ -2,6 +2,7 @@
   "field_set": {
     "name": "Mating",
     "param": "mating",
+    "order": 5,
     "description": "This section asks for information about how this Bird relates to others and to the ecology around it. Are they (or were they) bought/acquired by some other Bird, is there a funding relationship or a \"client\" relationship which allows them to exist. How do they sustain (and reproduce) themselves as a project?",
     "field_definitions_attributes": [  
       {
