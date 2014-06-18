@@ -4,8 +4,19 @@ class FieldValue < ActiveRecord::Base
   has_one :field_set, through: :field_definition
 
   belongs_to :case, inverse_of: :field_values  
-  validates_presence_of :case
 
+  validates_presence_of :case, :field_definition
+
+
+  def value=(v)
+    if field_definition.value_type == "select"
+      super({select: v})
+    else
+      super({text: v})
+    end
+  end
+
+  
   # field :field_definition_id, type: Moped::BSON::ObjectId
   # validates_presence_of :field_definition_id
 
