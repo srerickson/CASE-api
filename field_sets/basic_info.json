@@ -69,7 +69,7 @@
         }
       },{
         "name": "Classification",
-        "param": "classification",
+        "param": "genus_type",
         "order": 4,
         "value_type": "select",
         "value_options":[
