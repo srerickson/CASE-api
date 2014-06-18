@@ -1,0 +1,14 @@
+{
+  "field_set": {
+    "name": "Summary",
+    "param": "summary",
+    "description": "The summary should give an simple introduction. One sentence to describe what the bird is and what it does; a paragraph describing its ontogeny and structure, and a paragraph summarizing its behavior and mating. One can also add information here that is not elicited by these questions, but seems important in order to understand the bird. Other kinds of information that may also be appropriate her: analytical or theoretical assessments, questions, and ideas or suggestions for transforming the schema in based on something revealed by this bird.",
+    "field_definitions_attributes": [  
+      {
+
+        "param": "summary",
+        "name": "Summary"
+      }
+    ]
+  }
+}

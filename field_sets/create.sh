@@ -13,7 +13,6 @@ AUTH=`curl -s -X GET \
 echo "... authorized?: $AUTH"
 
 
-
 BI_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d @basic_info.json \
@@ -45,6 +44,7 @@ BE_ID=`curl -s -X POST \
      http://localhost:3000/field_sets | jsawk "return this.field_set.id" ` 
 echo "... created behavior field set with id: $BE_ID"
 
+
 MA_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d @mating.json \
@@ -53,9 +53,25 @@ MA_ID=`curl -s -X POST \
 echo "... created mating field set with id: $MA_ID"
 
 
+SM_ID=`curl -s -X POST \
+     -H 'Content-Type:application/json' \
+     -d @summary.json \
+     -H "Authorization: $TOKEN" \
+     http://localhost:3000/field_sets | jsawk "return this.field_set.id" ` 
+echo "... created summary field set with id: $SM_ID"
+
+
+MD_ID=`curl -s -X POST \
+     -H 'Content-Type:application/json' \
+     -d @metadata.json \
+     -H "Authorization: $TOKEN" \
+     http://localhost:3000/field_sets | jsawk "return this.field_set.id" ` 
+echo "... created metadata field set with id: $MD_ID"
+
+
 SCHEMA_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
-     -d "{\"schema\": {\"name\": \"Birds of the Internet\", \"param\":\"boi\", \"field_set_ids\": [$BI_ID, $ST_ID, $ON_ID, $BE_ID, $MA_ID]}}"\
+     -d "{\"schema\": {\"name\": \"Birds of the Internet\", \"param\":\"boi\", \"field_set_ids\": [$BI_ID, $ST_ID, $ON_ID, $BE_ID, $MA_ID, $SM_ID, $MD_ID]}}"\
      -H "Authorization: $TOKEN" \
      http://localhost:3000/schemas | jsawk "return this.schema.id" ` 
 echo "... created BOI schema with id: $SCHEMA_ID"

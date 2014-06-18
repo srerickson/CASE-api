@@ -1,0 +1,13 @@
+{
+  "field_set": {
+    "name": "Metadata",
+    "param": "metadata",
+    "field_definitions_attributes": [  
+      {
+        "param": "birder_credits",
+        "name": "Author Credits",
+        "description": "Indicate authorial credit(s) for this case study"
+      }
+    ]
+  }
+}
