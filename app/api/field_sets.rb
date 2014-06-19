@@ -22,7 +22,7 @@ module CASE
 
       desc "Creates a new Field Set"
       post do 
-        @schema.field_sets.create(params[:field_set])
+        @schema.field_sets.create!(params[:field_set])
       end
 
       route_param :field_set_id do 
@@ -34,12 +34,12 @@ module CASE
 
         desc "Updates a Field Set"
         put do
-          @schema.field_sets.find(params[:field_set_id]).update_attributes(params[:field_set])
+          @schema.field_sets.find(params[:field_set_id]).update_attributes!(params[:field_set])
         end
 
         desc "Destroys a Field Set"
         delete do
-          @schema.field_sets.find(params[:field_set_id]).destroy()
+          @schema.field_sets.find(params[:field_set_id]).destroy!
         end
 
         #
@@ -59,14 +59,14 @@ module CASE
             put do
               @schema.field_sets.find(params[:field_set_id])
                 .field_definitions.find(params[:field_definition_id])
-                .update_attributes(params[:field_definition])
+                .update_attributes!(params[:field_definition])
             end
 
             desc "Destroys a Field Definition in the Field Set"
             delete do 
               @schema.field_sets.find(params[:field_set_id])
                 .field_definitions.find(params[:field_definition_id])
-                .destroy()
+                .destroy!
             end
 
           end

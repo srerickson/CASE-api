@@ -69,6 +69,15 @@ FD_UPDATE=`curl -s -X PUT \
 echo "... updated field definition (id: $FD_ID): $FD_UPDATE"
 
 
+FD2_UPDATE=`curl -s -X PUT \
+     -H 'Content-Type:application/json' \
+     -d "{\"field_definition\":{\"param\": null}}" \
+     -H "Authorization: $TOKEN" \
+     http://localhost:3000/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD_ID `
+echo "... updated field definition with invalid data (should fail): $FD2_UPDATE"
+
+
+
 FD2_DELETE=`curl -s -X DELETE \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN" \

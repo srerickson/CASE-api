@@ -1,5 +1,5 @@
 class SchemaSerializer < CompactSchemaSerializer
 
-  has_many :field_sets, serializer: CompactFieldSetSerializer
+  has_many :field_sets, serializer: FieldSetSerializer
 
 end

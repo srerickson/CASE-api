@@ -34,15 +34,20 @@ module CASE
       true
     end
 
-
     rescue_from ActiveRecord::RecordNotFound do |e|
       Rack::Response.new({ error: e.message }.to_json, 404).finish
     end 
 
+    rescue_from ActiveRecord::RecordInvalid do |e|
+      Rack::Response.new({ error: e.message }.to_json, 500).finish
+    end
+
+    rescue_from ActiveRecord::RecordNotSaved do |e|
+      Rack::Response.new({ error: e.message }.to_json, 500).finish
+    end
 
     mount CASE::Schemas
     mount CASE::Cases
-
 
   end
 end

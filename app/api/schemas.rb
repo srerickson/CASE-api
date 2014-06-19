@@ -14,7 +14,7 @@ module CASE
 
       desc "Creates a Schema."
       post do 
-        Schema.create params[:schema]
+        Schema.create! params[:schema]
       end
 
       route_param :schema_id do
@@ -26,12 +26,12 @@ module CASE
 
         desc "Updates a Schema."
         put do
-          Schema.find(params[:schema_id]).update_attributes(params[:schema])
+          Schema.find(params[:schema_id]).update_attributes!(params[:schema])
         end
 
         desc "Deletes a Schema."
         delete do
-          Schema.find(params[:schema_id]).destroy
+          Schema.find(params[:schema_id]).destroy!
         end
 
         mount CASE::FieldSets
