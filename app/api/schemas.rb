@@ -1,39 +1,43 @@
 require 'field_sets'
 
-class SchemasAPI < Grape::API
+module CASE 
+  class Schemas < Grape::API
 
-  namespace :schemas do
+    helpers CASE::AuthorizationHelpers
 
-    desc "Lists Schemas."
-    get "/", each_serializer: CompactSchemaSerializer do 
-      Schema.all 
-    end
+    namespace :schemas do
 
-    desc "Creates a Schema."
-    post do 
-      Schema.create params[:schema]
-    end
-
-    route_param :schema_id do
-
-      desc "Retrieves a Schema."
-      get do
-        Schema.find(params[:schema_id])
+      desc "Lists Schemas."
+      get "/", each_serializer: CompactSchemaSerializer do 
+        Schema.all 
       end
 
-      desc "Updates a Schema."
-      put do
-        Schema.find(params[:schema_id]).update_attributes(params[:schema])
+      desc "Creates a Schema."
+      post do 
+        Schema.create params[:schema]
       end
 
-      desc "Deletes a Schema."
-      delete do
-        Schema.find(params[:schema_id]).destroy
-      end
+      route_param :schema_id do
 
-      mount ::FieldSetsAPI
+        desc "Retrieves a Schema."
+        get do
+          Schema.find(params[:schema_id])
+        end
 
-    end # route_param :schema_id
-  end # namespace :schemas
+        desc "Updates a Schema."
+        put do
+          Schema.find(params[:schema_id]).update_attributes(params[:schema])
+        end
 
+        desc "Deletes a Schema."
+        delete do
+          Schema.find(params[:schema_id]).destroy
+        end
+
+        mount CASE::FieldSets
+
+      end # route_param :schema_id
+    end # namespace :schemas
+
+  end
 end

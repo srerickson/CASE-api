@@ -2,4 +2,4 @@ $:.unshift("./")
 
 require 'environment.rb'
 
-run API
+run CASE::API
