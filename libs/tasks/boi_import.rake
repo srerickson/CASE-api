@@ -26,13 +26,13 @@ namespace :boi_import do
       skipped_keys = []
       old_case.keys.each do |k|
         if fd = FieldDefinition.find_by(param: k)
-          fv = FieldValue.find_or_initialize_by(case_id: new_case.id, field_definition_id: fd.id)
+          fv = fd.class.value_class.find_or_initialize_by(case_id: new_case.id, field_definition_id: fd.id)
           begin
-            if fd.value_type == "select"
+            if fv.is_a? SelectValue
               if k == "tangible_problem" # special case
-                fv.value = fd.select_lookup_id_by_name(old_case[k])
+                fv.value = fd.option_id_by_name(old_case[k])
               else
-                fv.value = old_case[k].nil? ? nil : fd.select_lookup_id_by_name(old_case[k]["name"])
+                fv.value = old_case[k].nil? ? nil : fd.option_id_by_name(old_case[k]["name"])
               end
             else 
               fv.value = old_case[k]

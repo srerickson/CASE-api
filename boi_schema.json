@@ -25,7 +25,7 @@
             "name": "Habitat",
             "param": "habitat",
             "order": 3,
-            "value_type": "select",
+            "type": "SelectField",
             "value_options": {
               "select": [
                 {
@@ -76,7 +76,7 @@
             "name": "Classification",
             "param": "genus_type",
             "order": 4,
-            "value_type": "select",
+            "type": "SelectField",
             "value_options": {
               "select": [
                 {
@@ -149,7 +149,7 @@
             "name": "FSE Organization Style",
             "param": "fse_org_style",
             "order": 1,
-            "value_type": "select",
+            "type": "SelectField",
             "value_options": {
               "select": [
                 {
@@ -228,7 +228,7 @@
             "name": "OP Organization Style",
             "param": "op_org_style",
             "order": 6,
-            "value_type": "select",
+            "type": "SelectField",
             "value_options": {
               "select": [
                 {
@@ -373,7 +373,7 @@
             "param": "tangible_problem",
             "description": "Is this entity designed in order to solve a specific, tangible problem? If so, what is the concrete problem it seeks to solve?",
             "order": 8,
-            "value_type": "select",
+            "type": "SelectField",
             "value_options": {
               "select": [
                 {"id": 1, "name": "Yes", "description": ""},

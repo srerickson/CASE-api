@@ -4,8 +4,8 @@ class CreateFieldDefinitions < ActiveRecord::Migration
       t.integer :field_set_id
       t.string  :name
       t.string  :param
-      t.string  :value_type, default: "text"
-      t.json    :value_options
+      t.string  :type, default: "TextField"
+      t.json    :value_options, default: {}
       t.text    :description
       t.integer :order, default: 0
       t.timestamps 

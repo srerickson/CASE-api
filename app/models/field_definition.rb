@@ -10,20 +10,5 @@ class FieldDefinition < ActiveRecord::Base
 
   validates_uniqueness_of :param, scope: :field_set_id
 
-  #
-  # Instance methods helpers for selection FieldDefinitions
-  #
-
-
-  # return the id of the select option with the given name
-  def select_lookup_id_by_name(name)
-    return nil if value_type != "select"
-    begin 
-      option = value_options["select"].detect{|s| s["name"] == name }
-      option["id"]
-    rescue StandardError => e
-      nil 
-    end
-  end
 
 end
