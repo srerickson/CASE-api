@@ -1,8 +1,22 @@
 require 'json'
 
 CASE_FILES =  Rake::FileList.new("../seven-dimensions-of-participation/birds/*.json")
+SCHEMA_FILE = "boi_schema.json"
 
 namespace :boi_import do 
+
+  task :users => :environment do 
+    User.create(name:"Seth", email:"sr.erickson@gmail.com", password:"12345")
+  end
+
+
+  task :schema => [:environment, SCHEMA_FILE] do 
+    schema_params = JSON.parse IO.read(SCHEMA_FILE)
+    if existing = Schema.find_by(param: schema_params["schema"]["param"])
+      existing.destroy
+    end
+    Schema.create!(schema_params["schema"])
+  end
 
 
   task :cases => [:environment]+CASE_FILES do
