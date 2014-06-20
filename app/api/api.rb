@@ -10,7 +10,7 @@ module CASE
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
     before do
-      CASE::API.logger.info "#{route.route_path} -- #{route.route_params}"
+      CASE::API.logger.info "#{route.route_path}"
     end
 
     helpers CASE::AuthorizationHelpers
@@ -23,7 +23,8 @@ module CASE
     end
     post :authenticate do 
       if user = User.validate(params[:username],params[:password]) 
-        JWT.encode(user.jwt_token, ENV["CASE_SECRET"],'HS256', {exp: 5.days.from_now.to_i}) 
+        token = JWT.encode(user.jwt_token, ENV["CASE_SECRET"],'HS256', {exp: 5.days.from_now.to_i})
+        return {token: token}
       else
         error!('401 Unauthorized', 401)
       end
