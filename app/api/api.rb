@@ -32,7 +32,7 @@ module CASE
 
     get :restricted do 
       authenticate!
-      true
+      return {response: "success"}
     end
 
     rescue_from ActiveRecord::RecordNotFound do |e|
