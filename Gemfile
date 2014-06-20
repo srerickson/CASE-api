@@ -4,6 +4,8 @@ gem "grape"
 # gem "mongoid", "~> 3.1.6"
 # gem "bson_ext"
 
+gem 'rack-cors'
+
 gem 'hashie_rails'
 
 gem 'grape-active_model_serializers'

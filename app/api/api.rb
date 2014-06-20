@@ -10,10 +10,7 @@ module CASE
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
     before do
-      CASE::API.logger.info route.route_path
-      CASE::API.logger.info route.route_params
-
-      header "Access-Control-Allow-Origin", "*"
+      CASE::API.logger.info "#{route.route_path} -- #{route.route_params}"
     end
 
     helpers CASE::AuthorizationHelpers
