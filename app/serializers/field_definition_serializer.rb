@@ -4,8 +4,8 @@ class FieldDefinitionSerializer < ActiveModel::Serializer
              :name,
              :param, 
              :description,
+             :type,
              :order,
-             :value_type,
              :value_options,
              :created_at, 
              :updated_at
