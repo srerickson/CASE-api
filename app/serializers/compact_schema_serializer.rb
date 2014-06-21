@@ -4,7 +4,6 @@ class CompactSchemaSerializer < ActiveModel::Serializer
               :name, 
               :param, 
               :description, 
-              :field_set_ids,
               :created_at, 
               :updated_at 
 

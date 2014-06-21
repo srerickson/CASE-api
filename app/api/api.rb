@@ -6,6 +6,8 @@ require 'schemas'
 module CASE
   class API < Grape::API
 
+    ActiveRecord::Base.logger = Logger.new(STDOUT)
+
     format :json
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
@@ -14,7 +16,6 @@ module CASE
     end
 
     helpers CASE::AuthorizationHelpers
-
 
     desc "Returns JWT Token"
     params do 
