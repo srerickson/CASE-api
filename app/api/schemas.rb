@@ -26,6 +26,11 @@ module CASE
 
         desc "Updates a Schema."
         put do
+          # first delete params that were part of out-going JSON 
+          # that should not be passed to update! 
+          # (field set updates are handled in their own action)
+          params[:schema].delete(:_case_count)
+          params[:schema].delete(:field_sets)
           Schema.find(params[:schema_id]).update_attributes!(params[:schema])
         end
 

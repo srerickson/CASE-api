@@ -34,6 +34,7 @@ module CASE
 
         desc "Updates a Field Set"
         put do
+          params[:field_set].delete(:field_definitions)
           @schema.field_sets.find(params[:field_set_id]).update_attributes!(params[:field_set])
         end
 
