@@ -12,7 +12,9 @@ module CASE
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
     before do
+      CASE::API.logger.info "-------------------"
       CASE::API.logger.info "#{route.route_path}"
+      CASE::API.logger.info params 
     end
 
     helpers CASE::AuthorizationHelpers
@@ -23,6 +25,7 @@ module CASE
       requires :password, type: String, desc: "Password"
     end
     post :authenticate do 
+      CASE::API.logger.info "----------here---------"
       if user = User.validate(params[:username],params[:password]) 
         token = JWT.encode(user.jwt_token, ENV["CASE_SECRET"],'HS256', {exp: 5.days.from_now.to_i})
         return {token: token}
