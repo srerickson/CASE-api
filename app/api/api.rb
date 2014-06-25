@@ -2,6 +2,7 @@ require 'jwt'
 require 'authorization_helpers'
 require 'cases'
 require 'schemas'
+require 'users'
 
 module CASE
   class API < Grape::API
@@ -31,11 +32,6 @@ module CASE
       end
     end
 
-    get :restricted do 
-      authenticate!
-      return {response: "success"}
-    end
-
     rescue_from ActiveRecord::RecordNotFound do |e|
       Rack::Response.new({ error: e.message }.to_json, 404).finish
     end 
@@ -50,6 +46,7 @@ module CASE
 
     mount CASE::Schemas
     mount CASE::Cases
+    mount CASE::Users
 
   end
 end
