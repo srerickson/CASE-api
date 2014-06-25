@@ -3,7 +3,7 @@ module CASE
 
     helpers CASE::AuthorizationHelpers
 
-    namespace :field_definitions, root: :field_definitions do
+    namespace :field_definitions do
 
       after_validation do 
         @schema ||= Schema.find(params[:schema_id]) unless params[:schema_id].nil? 

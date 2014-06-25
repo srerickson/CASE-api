@@ -49,7 +49,7 @@ FD_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"name\": \"URL\", \"param\": \"url\"}}" \
      -H "Authorization: $TOKEN" \
-     http://localhost:3000/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions | jsawk "return this.field_definition.id" `
+     http://localhost:3000/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions| jsawk "return this.field_definition.id" `
 echo "... added field definition to field set (id: $FS_ID) with id: $FD_ID"
 
 
@@ -77,7 +77,6 @@ FD2_UPDATE=`curl -s -X PUT \
 echo "... updated field definition with invalid data (should fail): $FD2_UPDATE"
 
 
-
 FD2_DELETE=`curl -s -X DELETE \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN" \
@@ -89,7 +88,7 @@ CASE_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d '{"case": {"name": "Echo Park"}}' \
      -H "Authorization: $TOKEN" \
-     http://localhost:3000/cases | jsawk "return this.id" `
+     http://localhost:3000/cases | jsawk "return this.case.id" `
 echo "... created case with id: $CASE_ID"
 
 
@@ -136,7 +135,7 @@ echo "... deleted schema with id: $DEL_SCH"
 DEL_CASE=`curl -s -X DELETE \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN" \
-     http://localhost:3000/cases/$CASE_ID | jsawk "return this.id" `
+     http://localhost:3000/cases/$CASE_ID | jsawk "return this.case.id" `
 echo "... deleted case with id: $DEL_CASE"
 
 
