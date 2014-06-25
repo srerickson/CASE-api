@@ -2,6 +2,6 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :configs 
 
   def configs
-    { active_schema: 1 }
+    { active_schema_id: 1 }
   end
 end
