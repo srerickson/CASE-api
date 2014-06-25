@@ -1,7 +1,8 @@
 class FieldDefinition < ActiveRecord::Base
 
   belongs_to :field_set, inverse_of: :field_definitions
-  
+  has_one :schema, through: :field_set
+
   has_many :field_values, inverse_of: :field_definition, 
                           dependent: :destroy
 

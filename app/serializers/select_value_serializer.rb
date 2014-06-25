@@ -1,0 +1,2 @@
+class SelectValueSerializer < FieldValueSerializer
+end

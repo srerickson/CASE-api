@@ -1,0 +1,2 @@
+class TextValueSerializer < FieldValueSerializer
+end

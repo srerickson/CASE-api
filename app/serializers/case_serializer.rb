@@ -1,0 +1,3 @@
+class CaseSerializer < CompactCaseSerializer
+
+end

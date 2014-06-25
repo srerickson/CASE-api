@@ -24,5 +24,8 @@ class Schema  < ActiveRecord::Base
     Case.uniq.joins(:schemas).merge(Schema.where(id: self.id ))
   end
 
+  def field_values
+    FieldValue.joins(:schema).merge(Schema.where(id: self.id ))
+  end
 
 end

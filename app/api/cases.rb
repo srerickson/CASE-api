@@ -19,21 +19,25 @@ module CASE
         Case.create!(params[:case])
       end
 
-      route_param :id do 
+      route_param :case_id do 
+
+        before do 
+          @case = Case.find(params[:case_id])
+        end
 
         desc "Show Case"
         get do
-          Case.find(params[:id])
+          @case
         end
 
         desc "Updates a Case"
         put do
-          Case.find(params[:id]).update_attributes!(params[:case])
+          @case.update_attributes!(params[:case])
         end
 
         desc "Destroys a Case"
         delete do
-          Case.find(params[:id]).destroy!
+          @case.destroy!
         end
 
         #
@@ -41,30 +45,32 @@ module CASE
         #
         namespace :field_values do
 
-          desc "List Cases Field Values"
+          desc "List Case's Field Values (optionally limited to a particular schema)"
           get do 
-            Case.find(params[:id]).field_values
+            if params[:schema_id]
+              @schema = Schema.find(params[:schema_id])
+              @schema.field_values.where(case_id: params[:case_id])
+            else
+              @case.field_values
+            end
           end
 
           desc "Creates a new Field Value in the Case"
           post do
-            Case.find(params[:id])
-              .field_values.create!(params[:field_value])
+            @case.field_values.create!(params[:field_value])
           end
 
           route_param :field_value_id do
 
             desc "Updates a Field Value in the Case"
             put do
-              Case.find(params[:id])
-                .field_values.find(params[:field_value_id])
+              @case.field_values.find(params[:field_value_id])
                 .update_attributes!(params[:field_value])
             end
 
             desc "Destroys a Field Value in the Case"
             delete do 
-              Case.find(params[:id])
-                .field_values.find(params[:field_value_id])
+              @case.field_values.find(params[:field_value_id])
                 .destroy!
             end
 
