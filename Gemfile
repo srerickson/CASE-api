@@ -14,6 +14,7 @@ gem "pg"
 gem "activerecord"
 
 gem "carrierwave"
+gem "fog"
 
 gem "thin"
 gem "jwt"

@@ -14,6 +14,7 @@ require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 
 
+### ActiveRecord config
 
 config = ENV['DATABASE_URL'] || {
     adapter: 'postgresql',
@@ -24,11 +25,26 @@ config = ENV['DATABASE_URL'] || {
 
 ActiveRecord::Base.establish_connection(config)
 
+
+
+### Carrierwave config
+
+ENV["FILE_STORAGE"] ||= "file"
 CarrierWave.configure do |config|
   config.root =  File.expand_path '../public', __FILE__
-  puts config.root 
+  if ENV["FILE_STORAGE"] == "fog"
+    config.fog_credentials = {
+      :provider               => 'AWS',
+      :aws_access_key_id      => ENV['AWS_ACCESS_KEY_ID'],
+      :aws_secret_access_key  => ENV['AWS_SECRET_KEY']
+    }
+    config.fog_directory  = 'partlab-case'
+  end
 end
 
+
+
+### Logging 
 
 unless ENV['RACK_ENV'] == "production"
   ActiveRecord::Base.logger = Logger.new(STDOUT) 
