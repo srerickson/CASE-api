@@ -5,7 +5,10 @@ module CASE
 
       desc "upload a file"
       post do
-        CASE::API.logger.info params
+        if @case and params[:case_image]
+          @case.image = params[:case_image] 
+          @case.save!
+        end
       end
 
     end

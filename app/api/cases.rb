@@ -1,3 +1,5 @@
+require 'uploads'
+
 module CASE
   class Cases < Grape::API
 
@@ -39,6 +41,8 @@ module CASE
         delete do
           @case.destroy!
         end
+
+        mount CASE::Uploads
 
         #
         # NESTED FIELD VALUES
