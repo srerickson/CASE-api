@@ -11,16 +11,18 @@ require 'active_record'
 require 'require_all'
 
 
-config =   ENV['DATABASE_URL'] || {
+config = ENV['DATABASE_URL'] || {
     adapter: 'postgresql',
     host: "localhost",
     database: "case",
     encoding: 'utf8'
   }
 
-puts config 
-
 ActiveRecord::Base.establish_connection(config)
+
+unless ENV['RACK_ENV'] == "production"
+  ActiveRecord::Base.logger = Logger.new(STDOUT) 
+end 
 
 
 require_all 'app/models'

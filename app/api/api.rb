@@ -3,11 +3,11 @@ require 'authorization_helpers'
 require 'cases'
 require 'schemas'
 require 'users'
+require 'uploads'
+
 
 module CASE
   class API < Grape::API
-
-    ActiveRecord::Base.logger = Logger.new(STDOUT)
 
     format :json
     formatter :json, Grape::Formatter::ActiveModelSerializers
@@ -47,6 +47,7 @@ module CASE
     mount CASE::Schemas
     mount CASE::Cases
     mount CASE::Users
+    # mount CASE::Uploads
 
   end
 end
