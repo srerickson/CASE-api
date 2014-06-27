@@ -10,6 +10,10 @@ require 'pg'
 require 'active_record'
 require 'require_all'
 
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+
+
 
 config = ENV['DATABASE_URL'] || {
     adapter: 'postgresql',
@@ -20,11 +24,18 @@ config = ENV['DATABASE_URL'] || {
 
 ActiveRecord::Base.establish_connection(config)
 
+CarrierWave.configure do |config|
+  config.root =  File.expand_path '../public', __FILE__
+  puts config.root 
+end
+
+
 unless ENV['RACK_ENV'] == "production"
   ActiveRecord::Base.logger = Logger.new(STDOUT) 
 end 
 
 
+require_all 'app/uploaders'
 require_all 'app/models'
 require_all 'app/serializers'
 

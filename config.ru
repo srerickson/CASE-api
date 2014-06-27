@@ -11,4 +11,6 @@ use Rack::Cors do
   end
 end
 
+use Rack::Static, urls: ["/case_images"], root: "public"
+
 run CASE::API

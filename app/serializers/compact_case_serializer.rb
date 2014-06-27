@@ -4,6 +4,11 @@ class CompactCaseSerializer < ActiveModel::Serializer
               :name, 
               :description,
               :created_at,
-              :updated_at
+              :updated_at,
+              :image_url
+
+  def image_url
+    object.image.url
+  end           
 
 end

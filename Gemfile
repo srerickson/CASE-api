@@ -13,6 +13,8 @@ gem 'grape-active_model_serializers'
 gem "pg"
 gem "activerecord"
 
+gem "carrierwave"
+
 gem "thin"
 gem "jwt"
 gem 'require_all'
