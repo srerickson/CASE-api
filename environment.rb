@@ -10,12 +10,17 @@ require 'pg'
 require 'active_record'
 require 'require_all'
 
-ActiveRecord::Base.establish_connection(
-  :adapter  => 'postgresql',
-  :host     => "localhost",
-  :database => "case",
-  :encoding => 'utf8'
-)
+
+config =   ENV['DATABASE_URL'] || {
+    adapter: 'postgresql',
+    host: "localhost",
+    database: "case",
+    encoding: 'utf8'
+  }
+
+puts config 
+
+ActiveRecord::Base.establish_connection(config)
 
 
 require_all 'app/models'
