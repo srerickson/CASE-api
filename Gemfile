@@ -17,7 +17,8 @@ gem "thin"
 gem "jwt"
 gem 'require_all'
 
+gem "racksh"
+
 group :development do 
   gem "rerun"
-  gem "racksh"
 end 
