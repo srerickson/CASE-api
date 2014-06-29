@@ -14,10 +14,6 @@
             "param": "url",
             "order": 0
           },{
-            "name": "Logo",
-            "param": "logo",
-            "order": 1
-          },{
             "name": "Other Files",
             "param": "other_files",
             "order": 2
@@ -398,19 +394,23 @@
           {
             "param": "alliances",
             "name": "Alliances",
-            "description": "Describe partnerships (mutual goals or compatibilities) and/or alliances (membership in a larger network)"  
+            "description": "Describe partnerships (mutual goals or compatibilities) and/or alliances (membership in a larger network)",
+            "order": 0
           },{
             "param": "clients",
             "name": "Project Clients",
-            "description": "Describe the project clients (on whose behalf does the entity provide services)?"  
+            "description": "Describe the project clients (on whose behalf does the entity provide services)?",
+            "order": 1
           },{
             "param": "sponsors",
             "name": "Project Sponsors",
-            "description": "Describe the project sponsors, i.e. entities that either directly fund it (sponsors, owners, acquirers)?"  
+            "description": "Describe the project sponsors, i.e. entities that either directly fund it (sponsors, owners, acquirers)?",
+            "order": 2
           },{
             "param": "elites",
             "name": "Elites",
-            "description": "Describe those people who have special forms of access to an entity based on their authority? Charismatic authority, legitimate authority, regulatory authority, political authority, etc?"  
+            "description": "Describe those people who have special forms of access to an entity based on their authority? Charismatic authority, legitimate authority, regulatory authority, political authority, etc?",
+            "order": 3
           }
         ]
       },
