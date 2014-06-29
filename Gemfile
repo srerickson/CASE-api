@@ -15,6 +15,7 @@ gem "activerecord"
 
 gem "carrierwave"
 gem "fog"
+gem "mini_magick"
 
 gem "thin"
 gem "jwt"
