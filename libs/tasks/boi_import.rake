@@ -24,6 +24,10 @@ namespace :boi_import do
       old_case = JSON.parse IO.read(c_file)
       # new_case = Case.find_or_create_by(id: old_case["id"], name: old_case["name"])
       new_case = Case.find_or_create_by(name: old_case["name"])
+      if old_case["logo"]
+        new_case.remote_image_url = "http://birds.recursivepublic.net/"+old_case["logo"]
+        new_case.save!
+      end
       skipped_keys = []
       old_case.keys.each do |k|
         if fd = FieldDefinition.find_by(param: k)

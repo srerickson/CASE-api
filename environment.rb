@@ -32,6 +32,7 @@ ActiveRecord::Base.establish_connection(config)
 ENV["FILE_STORAGE"] ||= "file"
 CarrierWave.configure do |config|
   config.root =  File.expand_path '../public', __FILE__
+  config.cache_dir = File.expand_path '../tmp/uploads', __FILE__
   if ENV["FILE_STORAGE"] == "fog"
     config.fog_credentials = {
       :provider               => 'AWS',
