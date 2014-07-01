@@ -22,12 +22,52 @@ namespace :boi_import do
   task :cases => [:environment]+CASE_FILES do
     CASE_FILES.each do |c_file|
       old_case = JSON.parse IO.read(c_file)
-      # new_case = Case.find_or_create_by(id: old_case["id"], name: old_case["name"])
-      new_case = Case.find_or_create_by(name: old_case["name"])
-      if old_case["logo"]
-        new_case.remote_image_url = "http://birds.recursivepublic.net/"+old_case["logo"]
-        new_case.save!
+      puts "-- Considering #{old_case['name']} --"
+      new_case = Case.find_or_initialize_by(name: old_case["name"])
+
+      if new_case.new_record? 
+        new_case.save
+        new_case.reload
+        puts "...[+] created new case"
+      else
+        puts "...[-] case already exists "
       end
+
+      if old_case["logo"]
+        if !new_case.image?
+          new_case.remote_image_url = "http://birds.recursivepublic.net/"+old_case["logo"]
+          new_case.save!
+          puts "...[+] uploaded logo"
+        else
+          puts "...[-] logo already uploaded"
+        end
+      else
+        puts "...[-] no logo"
+      end
+      old_case.delete("name")
+      old_case.delete("logo")
+
+      # values we don't migrate. 
+      old_case.delete("id")
+      old_case.delete("thumbnail_100_url")
+      old_case.delete("thumbnail_50_url")
+      old_case.delete("created_at")
+      old_case.delete("updated_at")
+      old_case.delete("updated_by")
+
+      #attached images 
+      old_case["images"].each do |img|
+        file_name = img["url"].split('/')[-1].split('?')[0]
+        if new_case.uploads.where(asset: file_name).empty?
+          url = "http://birds.recursivepublic.net/"+img["url"]
+          new_case.uploads.create(remote_asset_url: url)
+          puts "...[+] uploaded #{file_name}"
+        else
+          puts "...[-] already uploaded #{file_name}"
+        end
+      end
+      old_case.delete("images")
+
       skipped_keys = []
       old_case.keys.each do |k|
         if fd = FieldDefinition.find_by(param: k)
@@ -52,7 +92,9 @@ namespace :boi_import do
           skipped_keys << k
         end
       end
-      puts "completed #{old_case["name"]}, skipped values for: #{skipped_keys.join(',')} "
+      unless skipped_keys.empty?
+        puts "... skipped values for: #{skipped_keys.join(',')} "
+      end
     end
   end
 
