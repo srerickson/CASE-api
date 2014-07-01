@@ -1,4 +1,3 @@
-include CarrierWave::MiniMagick
 
 class CaseImageUploader < CarrierWave::Uploader::Base
   

@@ -1,3 +1,4 @@
 *.DS_Store
 public/case_images/*
+public/uploads/*
 tmp/*

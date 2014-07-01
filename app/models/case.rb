@@ -7,6 +7,8 @@ class Case < ActiveRecord::Base
   has_many :field_sets,  -> { uniq }, through: :field_definitions
   has_many :schemas, -> { uniq },through: :field_sets
 
+  has_many :uploads, as: :parent, dependent: :destroy, inverse_of: :parent
+
   mount_uploader :image, CaseImageUploader
 
 end

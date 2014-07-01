@@ -47,7 +47,6 @@ module CASE
     mount CASE::Schemas
     mount CASE::Cases
     mount CASE::Users
-    mount CASE::Uploads
 
   end
 end
