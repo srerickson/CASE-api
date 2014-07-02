@@ -1,9 +1,6 @@
 module CASE
   module Evaluations
-    class API < Grape::API
-
-      format :json
-      formatter :json, Grape::Formatter::ActiveModelSerializers
+    class EvaluationSets < Grape::API
 
       namespace :evaluation_sets do
         get do 
