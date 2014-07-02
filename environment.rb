@@ -51,6 +51,7 @@ unless ENV['RACK_ENV'] == "production"
   ActiveRecord::Base.logger = Logger.new(STDOUT) 
 end 
 
+require 'evaluations/evaluations'
 
 require_all 'app/uploaders'
 require_all 'app/models'
