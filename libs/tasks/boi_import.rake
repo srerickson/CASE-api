@@ -3,6 +3,13 @@ require 'json'
 CASE_FILES =  Rake::FileList.new("../seven-dimensions-of-participation/birds/*.json")
 SCHEMA_FILE = "boi_schema.json"
 
+EVAL_SET_FILE = File.expand_path("../seven-dimensions-of-participation/evaluation_sets/1.json")
+EVAL_RESP_FILES = Rake::FileList.new("../seven-dimensions-of-participation/evaluation_sets/evaluation_answers/*.json")
+
+CASE_ID_MAP_FILE = "tmp/boi_import-case_id_map.json"
+
+
+
 namespace :boi_import do 
 
   task :users => :environment do 
@@ -20,6 +27,9 @@ namespace :boi_import do
 
 
   task :cases => [:environment]+CASE_FILES do
+
+    case_id_map = {}
+
     CASE_FILES.each do |c_file|
       old_case = JSON.parse IO.read(c_file)
       puts "-- Considering #{old_case['name']} --"
@@ -32,6 +42,8 @@ namespace :boi_import do
       else
         puts "...[-] case already exists "
       end
+
+      case_id_map[old_case["id"].to_s] = new_case.id 
 
       if old_case["logo"]
         if !new_case.image?
@@ -96,7 +108,50 @@ namespace :boi_import do
         puts "... skipped values for: #{skipped_keys.join(',')} "
       end
     end
+
+    File.open(CASE_ID_MAP_FILE, 'w') do |f|
+      f.write(JSON.pretty_generate( case_id_map) )
+    end
+
   end
+
+
+  task :evaluations => [:environment, EVAL_SET_FILE] + EVAL_RESP_FILES do
+
+    include CASE::Evaluations 
+
+    case_id_map = JSON.parse IO.read(CASE_ID_MAP_FILE)
+    eval_question_map = {}
+
+    # clear everything
+    CASE::Evaluations::EvaluationSet.destroy_all 
+
+    # create the evaluation set
+    new_eval_set = EvaluationSet.create(name: "BOI Summer 2012", locked: true, public_responses: true)
+    old_eval_set = JSON.parse IO.read(EVAL_SET_FILE)
+    eval_questions = old_eval_set["evaluation_questions"]
+    eval_questions.each do |q|
+      new_q = new_eval_set.evaluation_questions.create(question: q["question"], position: q["position"], is_subquestion: q['sub_questions'])
+      eval_question_map[q["id"].to_s] = new_q.id
+    end
+
+    #migrate the responses
+    EVAL_RESP_FILES.each do |f|
+      # each file has responses for a particular case/question pair
+      resp_group = JSON.parse IO.read(f)
+      resp_group.each do |resp|
+        EvaluationResponse.create(
+          evaluation_question_id: eval_question_map[resp['evaluation_question_id'].to_s],
+          case_id: case_id_map[resp['bird_id'].to_s],
+          answer: {val: resp['answer']},
+          comment: resp['comment']
+        )
+      end
+
+    end
+
+  end
+
 
 
 end
