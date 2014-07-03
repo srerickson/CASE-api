@@ -1,6 +1,7 @@
 $:.unshift("./app","./app/api","./app/serializers","./libs")
 
 ENV["CASE_SECRET"] ||= "89072a1966rf0384470918732409831734hh0987d09348579048570987230498572asdfasdf014895"
+ENV["RACK_ENV"] ||= "development"
 
 require 'rubygems'
 require 'grape'
@@ -47,7 +48,7 @@ end
 
 ### Logging 
 
-unless ENV['RACK_ENV'] == "production"
+if ENV['RACK_ENV'] == "development"
   ActiveRecord::Base.logger = Logger.new(STDOUT) 
 end 
 
