@@ -11,15 +11,14 @@ module CASE
 
     format :json
     formatter :json, Grape::Formatter::ActiveModelSerializers
+    helpers CASE::AuthorizationHelpers
 
     before do
-      authenticate! if need_authorization?(route)
       if ENV['RACK_ENV'] == 'development'
         CASE::API.logger.info "#{route.route_method}: #{route.route_path}"
       end
+      authenticate! if need_authorization?(route)
     end
-
-    helpers CASE::AuthorizationHelpers
 
     desc "Returns JWT Token"
     params do 
@@ -51,7 +50,9 @@ module CASE
     mount CASE::Cases
     mount CASE::Users
 
-    mount CASE::Evaluations::API
+    namespace :evaluations do
+      mount CASE::Evaluations::API
+    end
 
 
   end

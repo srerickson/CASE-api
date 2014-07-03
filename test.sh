@@ -131,6 +131,62 @@ DEL_FS=`curl -s -X DELETE \
 echo "... deleted field set with id: $DEL_FS"
 
 
+# Evaluations Test
+
+EVAL_SET='{"set": {"name": "An Eval Set", "locked": false}}'
+ES_ID=`curl -s -X POST \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     -d "$EVAL_SET" \
+     $BASE_URL/evaluations/sets | jsawk "return this.set.id"`
+echo "... created an evaluation set with id: $ES_ID"
+
+
+EVAL_SET='{"set": {"locked": true}}'
+ES_UPDATE=`curl -s -X PUT \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     -d "$EVAL_SET" \
+     $BASE_URL/evaluations/sets/$ES_ID`
+echo "... updating an evaluation set with id: $ES_UPDATE"
+
+
+EVAL_Q='{"question": {"question": "what is your favorite color?"}}'
+EQ_ID=`curl -s -X POST \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     -d "$EVAL_Q" \
+     $BASE_URL/evaluations/sets/$ES_ID/questions | jsawk "return this.question.id"`
+echo "... created an evaluation question in evaluation set ($ES_ID) with id: $EQ_ID"
+
+
+EVAL_Q='{"question": {"is_subquestion": true}}'
+EQ_UPDATE=`curl -s -X PUT \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     -d "$EVAL_Q" \
+     $BASE_URL/evaluations/sets/$ES_ID/questions/$EQ_ID`
+echo "... updated the evaluation question ($EQ_ID): $EQ_UPDATE"
+
+
+
+
+# Cleanup
+
+EQ_DEL=`curl -s -X DELETE \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     $BASE_URL/evaluations/sets/$ES_ID/questions/$EQ_ID | jsawk "return this.question.id"`
+echo "... deleted the evaluation question ($EQ_ID): $EQ_DEL"
+
+
+DEL_ES=`curl -s -X DELETE \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN" \
+     $BASE_URL/evaluations/sets/$ES_ID | jsawk "return this.set.id"`
+echo "... deleted an evaluation set with id: $ES_ID"
+
+
 DEL_SCH=`curl -s -X DELETE \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN" \

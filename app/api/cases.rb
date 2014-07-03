@@ -12,7 +12,7 @@ module CASE
       # end
 
       desc "List Cases"
-      get do 
+      get "/", each_serializer: CompactCaseSerializer do
         Case.all
       end
 

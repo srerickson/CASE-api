@@ -3,18 +3,21 @@ $:.push File.expand_path("../", __FILE__)
 module CASE
   module Evaluations
 
-    autoload :EvaluationSet,      'models/evaluation_set'
-    autoload :EvaluationQuestion, 'models/evaluation_question'
-    autoload :EvaluationResponse, 'models/evaluation_response'
+    autoload :Set,      'models/set'
+    autoload :Question, 'models/question'
+    autoload :Response, 'models/response'
 
-    autoload :EvaluationSetSerializer,      'serializers/evaluation_set_serializer'
-    autoload :EvaluationQuestionSerializer, 'serializers/evaluation_question_serializer'
+    autoload :SetSerializer,      'serializers/set_serializer'
+    autoload :ResponseSerializer, 'serializers/response_serializer'
+    autoload :QuestionSerializer, 'serializers/question_serializer'
 
-    autoload :EvaluationSets, 'api/evaluation_sets'
-    autoload :EvaluationQuestions, 'api/evaluation_questions'
+    autoload :Sets, 'api/sets'
+    autoload :Questions, 'api/questions'
+    autoload :Responses, 'api/responses'
 
     class API< Grape::API
-      mount CASE::Evaluations::EvaluationSets
+      mount CASE::Evaluations::Sets
+      mount CASE::Evaluations::Responses
     end
 
   end

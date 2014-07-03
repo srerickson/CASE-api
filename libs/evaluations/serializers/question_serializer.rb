@@ -1,6 +1,6 @@
 module CASE
   module Evaluations
-    class EvaluationQuestionSerializer < ActiveModel::Serializer
+    class QuestionSerializer < ActiveModel::Serializer
       
       attributes :id, 
                  :question, 

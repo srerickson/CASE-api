@@ -1,8 +1,8 @@
 module CASE
   module Evaluations
-    class EvaluationSetSerializer < ActiveModel::Serializer
+    class SetSerializer < ActiveModel::Serializer
       attributes :id, :name, :locked, :public_responses
-      has_many :evaluation_questions
+      has_many :questions
     end
   end
 end

@@ -124,14 +124,14 @@ namespace :boi_import do
     eval_question_map = {}
 
     # clear everything
-    CASE::Evaluations::EvaluationSet.destroy_all 
+    CASE::Evaluations::Set.destroy_all 
 
     # create the evaluation set
-    new_eval_set = EvaluationSet.create(name: "BOI Summer 2012", locked: true, public_responses: true)
+    new_eval_set = CASE::Evaluations::Set.create(name: "BOI Summer 2012", locked: true, public_responses: true)
     old_eval_set = JSON.parse IO.read(EVAL_SET_FILE)
     eval_questions = old_eval_set["evaluation_questions"]
     eval_questions.each do |q|
-      new_q = new_eval_set.evaluation_questions.create(question: q["question"], position: q["position"], is_subquestion: q['sub_questions'])
+      new_q = new_eval_set.questions.create(question: q["question"], position: q["position"], is_subquestion: q['sub_questions'])
       eval_question_map[q["id"].to_s] = new_q.id
     end
 
@@ -140,8 +140,8 @@ namespace :boi_import do
       # each file has responses for a particular case/question pair
       resp_group = JSON.parse IO.read(f)
       resp_group.each do |resp|
-        EvaluationResponse.create(
-          evaluation_question_id: eval_question_map[resp['evaluation_question_id'].to_s],
+        CASE::Evaluations::Response.create!(
+          question_id: eval_question_map[resp['evaluation_question_id'].to_s],
           case_id: case_id_map[resp['bird_id'].to_s],
           answer: {val: resp['answer']},
           comment: resp['comment']
