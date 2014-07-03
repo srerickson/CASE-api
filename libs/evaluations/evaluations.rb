@@ -11,6 +11,7 @@ module CASE
     autoload :EvaluationQuestionSerializer, 'serializers/evaluation_question_serializer'
 
     autoload :EvaluationSets, 'api/evaluation_sets'
+    autoload :EvaluationQuestions, 'api/evaluation_questions'
 
     class API< Grape::API
       mount CASE::Evaluations::EvaluationSets
