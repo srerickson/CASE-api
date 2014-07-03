@@ -9,13 +9,13 @@ PASSWORD="12345"
 TOKEN=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"username\": \"$USERNAME\", \"password\": \"$PASSWORD\"}" \
-     $BASE_URL/authenticate | sed 's/\"//g'`
-
+     $BASE_URL/authenticate | jsawk "return this.token"`
+echo "... token: $TOKEN"
 
 AUTH=`curl -s -X GET \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN" \
-     $BASE_URL/restricted`
+     $BASE_URL/users/current_user`
 echo "... authorized?: $AUTH"
 
 
@@ -111,7 +111,7 @@ FV_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"field_value\": {\"value\": $VAL, \"field_definition_id\": $FD_ID}}" \
      -H "Authorization: $TOKEN" \
-     $BASE_URL/cases/$CASE_ID/field_values | jsawk "return this.id" `
+     $BASE_URL/cases/$CASE_ID/field_values | jsawk "return this.field_value.id" `
 echo "... created field value for case $CASE_ID, field def $FD_ID: $FV_ID"
 
 
