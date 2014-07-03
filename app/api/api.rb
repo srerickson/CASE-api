@@ -13,7 +13,10 @@ module CASE
     formatter :json, Grape::Formatter::ActiveModelSerializers
 
     before do
-      CASE::API.logger.info "#{route.route_path}"
+      authenticate! if need_authorization?(route)
+      if ENV['RACK_ENV'] == 'development'
+        CASE::API.logger.info "#{route.route_method}: #{route.route_path}"
+      end
     end
 
     helpers CASE::AuthorizationHelpers

@@ -3,6 +3,26 @@ require 'jwt'
 module CASE 
   module AuthorizationHelpers
 
+    def white_list
+      [
+        [/POST/, /\/authenticate/],
+        [/GET/, /.*/]
+      ]
+    end
+
+    def need_authorization?(route)
+      method = route.route_method
+      path = route.route_path.gsub(/\(\.:format\)/,'')
+      white_listed = white_list.any? do |pattern|
+        method =~ pattern[0] and path =~ pattern[1]
+      end
+      if white_listed
+        false
+      else
+        true
+      end
+    end      
+
     def current_user
       begin
         @jwt ||= JWT.decode(headers['Authorization'], ENV['CASE_SECRET'])
