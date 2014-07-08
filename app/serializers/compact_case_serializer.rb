@@ -5,10 +5,14 @@ class CompactCaseSerializer < ActiveModel::Serializer
               :description,
               :created_at,
               :updated_at,
-              :image_url
+              :_image_urls
 
-  def image_url
-    object.image.url
+  def _image_urls
+    {
+      sq60: object.image.url(:sq60),
+      sq100: object.image.url(:sq100)
+
+    }
   end           
 
 end

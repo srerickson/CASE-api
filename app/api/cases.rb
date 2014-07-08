@@ -33,7 +33,11 @@ module CASE
         end
 
         desc "Updates a Case"
+        params do
+          requires :case
+        end
         put do
+          params[:case].delete(:_image_urls)
           @case.update_attributes!(params[:case])
         end
 
