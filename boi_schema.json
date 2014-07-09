@@ -12,15 +12,15 @@
           {
             "name": "URL",
             "param": "url",
-            "order": 0
-          },{
-            "name": "Other Files",
-            "param": "other_files",
-            "order": 1
+            "order": 0,
+            "value_options": {
+              "short": true,
+              "url": true
+            }
           },{
             "name": "Habitat",
             "param": "habitat",
-            "order": 2,
+            "order": 1,
             "type": "SelectField",
             "value_options": {
               "select": [
@@ -71,7 +71,7 @@
           },{
             "name": "Classification",
             "param": "genus_type",
-            "order": 3,
+            "order": 2,
             "type": "SelectField",
             "value_options": {
               "select": [
@@ -126,7 +126,7 @@
             "name": "Brand",
             "param": "brand",
             "description": "Describe how the brand / logo / visual identity is positioned.",
-            "order": 4
+            "order": 3
           }
         ]
       },
@@ -381,7 +381,10 @@
             "name": "Tangible Problem",
             "param": "tangible_problem_detail",
             "order": 9,
-            "description": "What is the concrete problem it seeks to solve?" 
+            "description": "What is the concrete problem it seeks to solve?",
+            "value_options": {
+              "short": true
+            }
           }
         ]
       },
