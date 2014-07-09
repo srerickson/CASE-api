@@ -54,7 +54,7 @@ module CASE
         namespace :field_values do
 
           desc "List Case's Field Values (optionally limited to a particular schema)"
-          get do 
+          get do
             if params[:schema_id]
               @schema = Schema.find(params[:schema_id])
               @schema.field_values.where(case_id: params[:case_id])
@@ -77,11 +77,16 @@ module CASE
 
           route_param :field_value_id do
 
+            desc "Gets a Field Value in the Case"
+            get do
+              @case.field_values.find(params[:field_value_id])
+            end
+
+
             desc "Updates a Field Value in the Case"
             put do                
-              fv = @case.field_values.find(params[:field_value_id])
-              fv.update_attributes!(params[:field_value])
-              fv.reload
+              @case.field_values.find(params[:field_value_id])
+                .update_attributes!(params[:field_value])
             end
 
             desc "Destroys a Field Value in the Case"
