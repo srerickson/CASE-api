@@ -1,8 +1,13 @@
 module CASE
   module Evaluations
-    class SetSerializer < ActiveModel::Serializer
-      attributes :id, :name, :locked, :public_responses
-      has_many :questions
+    class SetSerializer < CompactSetSerializer
+
+      attributes :aggregates
+
+      def aggregates
+        object.summary
+      end
+
     end
   end
 end

@@ -5,7 +5,7 @@ module CASE
       namespace :sets do
 
         desc "Gets all evaluation sets"
-        get do 
+        get "/", each_serializer: CompactSetSerializer do 
           Set.all 
         end
 

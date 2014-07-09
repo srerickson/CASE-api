@@ -8,6 +8,8 @@ module CASE
     autoload :Response, 'models/response'
 
     autoload :SetSerializer,      'serializers/set_serializer'
+    autoload :CompactSetSerializer, 'serializers/compact_set_serializer'
+
     autoload :ResponseSerializer, 'serializers/response_serializer'
     autoload :QuestionSerializer, 'serializers/question_serializer'
 
