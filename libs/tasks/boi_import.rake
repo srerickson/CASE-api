@@ -131,9 +131,24 @@ namespace :boi_import do
     old_eval_set = JSON.parse IO.read(EVAL_SET_FILE)
     eval_questions = old_eval_set["evaluation_questions"]
     eval_questions.each do |q|
-      new_q = new_eval_set.questions.create(question: q["question"], position: q["position"], is_subquestion: q['sub_questions'])
+      new_q = new_eval_set.questions.create({
+        question: q["question"], 
+        position: q["position"], 
+        is_subquestion: q['sub_questions'],
+        response_options: {
+          "-1" => "NO",
+          "0"  => "N/A",
+          "1"  => "YES"
+        }
+      })
       eval_question_map[q["id"].to_s] = new_q.id
     end
+
+    new_answer_map = {
+      "NO"  => -1,
+      "N/A" => 0,
+      "YES" => 1
+    }
 
     #migrate the responses
     EVAL_RESP_FILES.each do |f|
@@ -143,7 +158,7 @@ namespace :boi_import do
         CASE::Evaluations::Response.create!(
           question_id: eval_question_map[resp['evaluation_question_id'].to_s],
           case_id: case_id_map[resp['bird_id'].to_s],
-          answer: {val: resp['answer']},
+          answer: new_answer_map[resp['answer']],
           comment: resp['comment']
         )
       end

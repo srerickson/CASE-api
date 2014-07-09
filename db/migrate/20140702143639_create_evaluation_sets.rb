@@ -24,7 +24,7 @@ class CreateEvaluationSets < ActiveRecord::Migration
       t.integer :user_id
       t.integer :question_id
       t.integer :case_id
-      t.json    :answer, default: {}
+      t.integer :answer
       t.text    :comment
       t.timestamps
     end
