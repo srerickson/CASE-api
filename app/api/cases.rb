@@ -64,16 +64,24 @@ module CASE
           end
 
           desc "Creates a new Field Value in the Case"
+          params do 
+            requires :field_value, type: Hash do
+              requires :field_definition_id
+            end
+          end
           post do
-            @case.field_values.create!(params[:field_value])
+            params[:field_value][:case_id] = params[:case_id]
+            fd = FieldDefinition.find(params[:field_value][:field_definition_id])
+            fd.class.value_class.create!(params[:field_value])
           end
 
           route_param :field_value_id do
 
             desc "Updates a Field Value in the Case"
-            put do
-              @case.field_values.find(params[:field_value_id])
-                .update_attributes!(params[:field_value])
+            put do                
+              fv = @case.field_values.find(params[:field_value_id])
+              fv.update_attributes!(params[:field_value])
+              fv.reload
             end
 
             desc "Destroys a Field Value in the Case"
