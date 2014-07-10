@@ -148,7 +148,7 @@ namespace :boi_import do
         question: q["question"], 
         position: q["position"], 
         param: params_map[q["id"]],
-        is_subquestion: q['sub_questions'],
+        is_subquestion: q['sub_question'],
         response_options: {
           "-1" => "NO",
           "0"  => "N/A",
