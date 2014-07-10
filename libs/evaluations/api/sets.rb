@@ -1,3 +1,5 @@
+require 'compact_case_serializer'
+
 module CASE
   module Evaluations
     class Sets < Grape::API
@@ -26,6 +28,11 @@ module CASE
           desc "Gets an evaluation set"
           get do 
             @set
+          end
+
+          desc "Gets cases evaluated with the evaluation set"
+          get :cases, each_serializer: ::CompactCaseSerializer, root: :cases do 
+            @set.cases
           end
 
           desc "Updates an evaluation set"
