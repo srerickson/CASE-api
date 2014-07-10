@@ -5,7 +5,7 @@ module CASE
       attributes :aggregates
 
       def aggregates
-        object.summary
+        object.aggregates
       end
 
     end

@@ -22,5 +22,22 @@ module CASE
       mount CASE::Evaluations::Responses
     end
 
+    def self.aggregate(responses, questions = nil)      
+      questions ||= Question.all # probably a bad idea
+      aggregated = []
+      questions.each do |q|
+        select  = "case_id, question_id"
+        q.response_options.each do |k,v|
+          select += ",COUNT( CASE WHEN answer = #{k.to_i} then 1 ELSE null END) as #{v.parameterize.underscore}_count"
+          select += ",COUNT( CASE WHEN answer = #{k.to_i} and comment is not null AND comment != '' then 1 ELSE null END) as #{v.parameterize.underscore}_comment_count"
+        end
+        aggregated += responses.select( select )
+                        .where(question_id: q.id)
+                        .group("responses.case_id, responses.question_id")
+                        # .order('case_id ASC')
+      end
+      aggregated
+    end
+
   end
 end
