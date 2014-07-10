@@ -126,6 +126,19 @@ namespace :boi_import do
     # clear everything
     CASE::Evaluations::Set.destroy_all 
 
+    # params
+    params_map = {
+      1 => "educative",
+      2 => "goals",
+      3 => "direct",
+      4 => "control",
+      5 => "collective",
+      6 => "exit",
+      7 => "voice",
+      8 => "metrics",
+      9 => "communication"
+    }
+
     # create the evaluation set
     new_eval_set = CASE::Evaluations::Set.create(name: "BOI Summer 2012", locked: true, public_responses: true)
     old_eval_set = JSON.parse IO.read(EVAL_SET_FILE)
@@ -134,6 +147,7 @@ namespace :boi_import do
       new_q = new_eval_set.questions.create({
         question: q["question"], 
         position: q["position"], 
+        param: params_map[q["id"]],
         is_subquestion: q['sub_questions'],
         response_options: {
           "-1" => "NO",

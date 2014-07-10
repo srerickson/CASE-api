@@ -3,7 +3,8 @@ module CASE
     class QuestionSerializer < ActiveModel::Serializer
       
       attributes :id, 
-                 :question, 
+                 :question,
+                 :param, 
                  :position, 
                  :is_subquestion, 
                  :response_options
