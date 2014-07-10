@@ -34,6 +34,7 @@ module CASE
         aggregated += responses.select( select )
                         .where(question_id: q.id)
                         .group("responses.case_id, responses.question_id")
+                        .map(&:attributes)
                         # .order('case_id ASC')
       end
       aggregated

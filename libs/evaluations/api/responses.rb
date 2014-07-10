@@ -6,9 +6,8 @@ module CASE
 
         desc "Gets all evaluation responses for a case"
         get do 
-          if params[:user_id]
-            responses ||= Response.all
-            responses = responses.where(user_id: params[:user_id])
+          if params[:set_id]
+            responses = Set.find(params[:set_id]).responses
           end
           if params[:question_id]
             responses ||= Response.all 
@@ -22,7 +21,15 @@ module CASE
             responses ||= Response.all 
             responses = responses.where(user_id: params[:user_id])
           end
-          responses
+
+          if params[:aggregate] and responses
+            questions = @set.nil? ? Question.all : @set.questions 
+            CASE::Evaluations.aggregate(responses, questions)
+          elsif responses
+            responses
+          else
+            []
+          end
         end
 
         desc "Creates an evaluation response"
