@@ -7,6 +7,15 @@ module CASE
       has_many :responses, dependent: :destroy, 
                            inverse_of: :question,
                            class_name: '::CASE::Evaluations::Response'
+
+
+
+      # Response aggregates use these params
+      # in count fields - e.g. "n_a_count"
+      def response_option_params
+        Hash[ response_options.map{|k,v| [k, v.parameterize.underscore]} ]
+      end
+
     end
   end
 end

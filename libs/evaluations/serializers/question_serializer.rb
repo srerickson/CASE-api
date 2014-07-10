@@ -7,7 +7,9 @@ module CASE
                  :param, 
                  :position, 
                  :is_subquestion, 
-                 :response_options
+                 :response_options,
+                 :response_option_params
+
     end
   end
 end
