@@ -6,14 +6,29 @@ SCHEMA_FILE = "boi_schema.json"
 EVAL_SET_FILE = File.expand_path("../seven-dimensions-of-participation/evaluation_sets/1.json")
 EVAL_RESP_FILES = Rake::FileList.new("../seven-dimensions-of-participation/evaluation_sets/evaluation_answers/*.json")
 
-CASE_ID_MAP_FILE = "tmp/boi_import-case_id_map.json"
+USERS_FILE = File.expand_path("../seven-dimensions-of-participation/users.json")
 
+CASE_ID_MAP_FILE = "tmp/boi_import-case_id_map.json"
+USER_ID_MAP_FILE = "tmp/boi_import_user_id_map.json"
 
 
 namespace :boi_import do 
 
   task :users => :environment do 
-    User.create(name:"Seth", email:"sr.erickson@gmail.com", password:"12345")
+    users_map = {}
+    old_users = JSON.parse IO.read(USERS_FILE)
+    old_users.each do |u|
+      puts u
+      new_user = User.find_or_initialize_by(email: u["email"])
+      new_user.password = 'birds'
+      new_user.name = u["email"].split("@")[0]
+      new_user.save! 
+      users_map[u["id"]] = new_user.id 
+    end
+
+    File.open(USER_ID_MAP_FILE,'w') do |f|
+      f.write JSON.pretty_generate(users_map)
+    end
   end
 
 
@@ -121,12 +136,12 @@ namespace :boi_import do
     include CASE::Evaluations 
 
     case_id_map = JSON.parse IO.read(CASE_ID_MAP_FILE)
+    user_id_map = JSON.parse IO.read(USER_ID_MAP_FILE)
+
+    # maps old->new question ids
     eval_question_map = {}
 
-    # clear everything
-    CASE::Evaluations::Set.destroy_all 
-
-    # params
+    # old eval questions don't have params
     params_map = {
       1 => "educative",
       2 => "goals",
@@ -138,6 +153,9 @@ namespace :boi_import do
       8 => "metrics",
       9 => "communication"
     }
+
+    # clear everything
+    CASE::Evaluations::Set.destroy_all 
 
     # create the evaluation set
     new_eval_set = CASE::Evaluations::Set.create(name: "BOI Summer 2012", locked: true, public_responses: true)
@@ -173,7 +191,8 @@ namespace :boi_import do
           question_id: eval_question_map[resp['evaluation_question_id'].to_s],
           case_id: case_id_map[resp['bird_id'].to_s],
           answer: new_answer_map[resp['answer']],
-          comment: resp['comment']
+          comment: resp['comment'],
+          user_id: user_id_map[resp['user_id'].to_s]
         )
       end
 

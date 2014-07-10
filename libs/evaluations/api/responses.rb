@@ -6,6 +6,10 @@ module CASE
 
         desc "Gets all evaluation responses for a case"
         get do 
+          if params[:user_id]
+            responses ||= Response.all
+            responses = responses.where(user_id: params[:user_id])
+          end
           if params[:question_id]
             responses ||= Response.all 
             responses = responses.where(question_id: params[:question_id])
