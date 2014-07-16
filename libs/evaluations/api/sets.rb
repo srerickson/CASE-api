@@ -22,7 +22,7 @@ module CASE
         route_param :set_id do 
 
           before do 
-            @set = Set.find(params[:set_id])
+            @set ||= Set.find(params[:set_id])
           end
 
           desc "Gets an evaluation set"
@@ -33,6 +33,31 @@ module CASE
           desc "Gets cases evaluated with the evaluation set"
           get :cases, each_serializer: ::CompactCaseSerializer, root: :cases do 
             @set.cases
+          end
+
+          desc "Gets responses for the evaluation set"
+          get :responses, each_serializer: ResponseSerializer, root: :responses do 
+            if params[:question_id]
+              responses ||= @set.responses
+              responses = responses.where(question_id: params[:question_id])
+            end
+            if params[:case_id]
+              responses ||= @set.responses
+              responses = responses.where(case_id: params[:case_id])
+            end
+            if params[:user_id]
+              responses ||= @set.responses
+              responses = responses.where(user_id: params[:user_id])
+            end
+            if params[:owned] and current_user
+              responses ||= @set.responses
+              responses = responses.where(user_id: current_user.id)
+            end
+            if params[:aggregate] 
+              CASE::Evaluations.aggregate(responses, @set.questions )
+            else
+              responses
+            end
           end
 
           desc "Updates an evaluation set"
