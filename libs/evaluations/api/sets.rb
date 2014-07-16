@@ -32,7 +32,14 @@ module CASE
 
           desc "Gets cases evaluated with the evaluation set"
           get :cases, each_serializer: ::CompactCaseSerializer, root: :cases do 
-            @set.cases
+            if params[:own] and current_user
+              Case.joins(responses: :set)
+                  .where(responses: {user_id: current_user.id})
+                  .where(sets: {id: @set.id})
+                  .uniq
+            else
+              @set.cases
+            end
           end
 
           desc "Gets responses for the evaluation set"
@@ -49,7 +56,7 @@ module CASE
               responses ||= @set.responses
               responses = responses.where(user_id: params[:user_id])
             end
-            if params[:owned] and current_user
+            if params[:own] and current_user
               responses ||= @set.responses
               responses = responses.where(user_id: current_user.id)
             end
