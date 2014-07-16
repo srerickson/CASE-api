@@ -36,7 +36,7 @@ module CASE
           end
 
           desc "Gets responses for the evaluation set"
-          get :responses, each_serializer: ResponseSerializer, root: :responses do 
+          get :responses, root: :responses do 
             if params[:question_id]
               responses ||= @set.responses
               responses = responses.where(question_id: params[:question_id])
