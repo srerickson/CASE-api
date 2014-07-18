@@ -38,6 +38,7 @@ module CASE
         end
         put do
           params[:case].delete(:_image_urls)
+          params[:case].delete(:uploads)
           @case.update_attributes!(params[:case])
         end
 
