@@ -42,38 +42,6 @@ module CASE
             end
           end
 
-          desc "Gets responses for the evaluation set"
-          get :responses, root: :responses do 
-
-            # don't give out all responses unless permitted 
-            if !params[:own] and !@set.public_responses and current_user != @set.user
-              return []
-            end
-
-            responses = @set.responses
-            if params[:question_id]
-              # responses ||= @set.responses
-              responses = responses.where(question_id: params[:question_id])
-            end
-            if params[:case_id]
-              # responses ||= @set.responses
-              responses = responses.where(case_id: params[:case_id])
-            end
-            if params[:user_id]
-              # responses ||= @set.responses
-              responses = responses.where(user_id: params[:user_id])
-            end
-            if params[:own] and current_user
-              # responses ||= @set.responses
-              responses = responses.where(user_id: current_user.id)
-            end
-            if params[:aggregate] 
-              CASE::Evaluations.aggregate(responses, @set.questions )
-            else
-              responses
-            end
-          end
-
           desc "Updates an evaluation set"
           params do
             requires :set
@@ -87,7 +55,9 @@ module CASE
             @set.destroy! 
           end 
 
+          mount CASE::Evaluations::Responses
           mount CASE::Evaluations::Questions
+
         end
 
       end

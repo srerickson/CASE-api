@@ -19,7 +19,6 @@ module CASE
 
     class API< Grape::API
       mount CASE::Evaluations::Sets
-      mount CASE::Evaluations::Responses
     end
 
     def self.aggregate(responses, questions = nil)      
