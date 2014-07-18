@@ -43,6 +43,7 @@ module CASE
             requires :question
           end
           put do
+            params[:question].delete(:response_option_params)
             @question.update_attributes!(params[:question])
           end
 

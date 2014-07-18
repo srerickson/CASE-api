@@ -47,6 +47,7 @@ module CASE
             requires :set
           end
           put do 
+            params[:set].delete(:questions)
             @set.update_attributes!(params[:set])
           end
 
