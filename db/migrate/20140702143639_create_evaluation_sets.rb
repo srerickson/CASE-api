@@ -10,9 +10,8 @@ class CreateEvaluationSets < ActiveRecord::Migration
     end
 
     create_table :questions do |t|
-      t.string  :type
       t.integer :set_id
-      t.integer :position
+      t.integer :order
       t.text    :question
       t.string  :param
       t.json    :response_options, default: {}

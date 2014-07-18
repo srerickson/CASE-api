@@ -5,7 +5,7 @@ module CASE
       attributes :id, 
                  :question,
                  :param, 
-                 :position, 
+                 :order, 
                  :is_subquestion, 
                  :response_options,
                  :response_option_params

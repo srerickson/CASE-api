@@ -164,7 +164,7 @@ namespace :boi_import do
     eval_questions.each do |q|
       new_q = new_eval_set.questions.create({
         question: q["question"], 
-        position: q["position"], 
+        order: q["position"], 
         param: params_map[q["id"]],
         is_subquestion: q['sub_question'],
         response_options: {
