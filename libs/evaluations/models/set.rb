@@ -12,6 +12,8 @@ module CASE
       has_many :cases, -> { uniq }, through: :responses
 
 
+      accepts_nested_attributes_for :questions, allow_destroy: true
+
       def aggregates
         CASE::Evaluations.aggregate(responses, questions)
       end
