@@ -10,7 +10,7 @@ module CASE
       has_many :responses, through: :questions,
                            class_name: '::CASE::Evaluations::Response'
 
-      has_many :cases, -> { uniq }, through: :responses
+      has_many :cases, through: :responses
 
 
       accepts_nested_attributes_for :questions, allow_destroy: true

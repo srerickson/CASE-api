@@ -31,6 +31,7 @@ module CASE
           select += ",COUNT( CASE WHEN answer = #{k.to_i} and comment is not null AND comment != '' then 1 ELSE null END) as #{v}_comment_count"
         end
         aggregated += responses.select( select )
+                        .reorder('')
                         .where(question_id: q.id)
                         .group("responses.case_id, responses.question_id")
                         .map(&:attributes)

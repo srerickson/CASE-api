@@ -38,7 +38,7 @@ module CASE
                   .where(sets: {id: @set.id})
                   .uniq
             else
-              @set.cases
+              @set.cases.uniq
             end
           end
 
