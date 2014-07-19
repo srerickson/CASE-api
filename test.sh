@@ -4,7 +4,7 @@
 BASE_URL="localhost:3000"
 
 USERNAME="sr.erickson@gmail.com"
-PASSWORD="12345"
+PASSWORD="birds"
 
 TOKEN=`curl -s -X POST \
      -H 'Content-Type:application/json' \
