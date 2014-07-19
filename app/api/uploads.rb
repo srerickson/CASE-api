@@ -12,7 +12,7 @@ module CASE
           @case.image = params[:case_image] 
           @case.save!
         elsif @case and params[:file]
-          @case.uploads.create(asset: params[:file])
+          @case.uploads.create!(asset: params[:file])
         end
       end
 

@@ -6,6 +6,10 @@ BASE_URL="localhost:3000"
 USERNAME="sr.erickson@gmail.com"
 PASSWORD="birds"
 
+TMPFILE="`date '+%m%d%H%M%Y%S'`.tmp.txt"
+TMPIMAGE="`date '+%m%d%H%M%Y%S'`.tmp.jpg"
+
+
 TOKEN=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"username\": \"$USERNAME\", \"password\": \"$PASSWORD\"}" \
@@ -130,6 +134,24 @@ DEL_FS=`curl -s -X DELETE \
      $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID | jsawk "return this.field_set.id" `
 echo "... deleted field set with id: $DEL_FS"
 
+
+# File Upload Test
+echo "DATADATADAT" > $TMPFILE
+UPLOAD=`curl -s -X POST \
+     -H "Authorization: $TOKEN" \
+     -F file=@$TMPFILE \
+     $BASE_URL/cases/$CASE_ID/uploads`
+echo "... uploaded a file: $UPLOAD"
+
+convert -size 100x100 xc:white $TMPIMAGE # generate image
+IMAGE=`curl -s -X POST \
+     -H "Authorization: $TOKEN" \
+     -F case_image=@$TMPIMAGE \
+     $BASE_URL/cases/$CASE_ID/uploads`
+echo "... uploaded case icon: $IMAGE"
+
+rm $TMPFILE
+rm $TMPIMAGE
 
 # Evaluations Test
 
