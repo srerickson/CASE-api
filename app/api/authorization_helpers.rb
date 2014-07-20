@@ -43,6 +43,11 @@ module CASE
     def authenticate!
       error!('401 Unauthorized', 401) unless current_user
     end
+
+    def authorize_owner!(user)
+     error!('401 Unauthorized', 401) unless current_user and current_user == user
+    end
+
   end
 
 end

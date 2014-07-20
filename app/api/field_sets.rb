@@ -8,7 +8,7 @@ module CASE
     namespace :field_sets do
 
       after_validation do 
-        @schema ||= Schema.find(params[:schema_id]) unless params[:schema_id].nil? 
+        @schema ||= Schema.find(params[:schema_id])
       end
 
       desc "List Field Sets"
@@ -18,6 +18,8 @@ module CASE
 
       desc "Creates a new Field Set"
       post do 
+        # must be schema owner to do this
+        authorize_owner!(@schema.user)
         @schema.field_sets.create!(params[:field_set])
       end
 
@@ -30,12 +32,16 @@ module CASE
 
         desc "Updates a Field Set"
         put do
+          # must be schema owner to do this
+          authorize_owner!(@schema.user)
           params[:field_set].delete(:field_definitions)
           @schema.field_sets.find(params[:field_set_id]).update_attributes!(params[:field_set])
         end
 
         desc "Destroys a Field Set"
         delete do
+          # must be schema owner to do this
+          authorize_owner!(@schema.user)
           @schema.field_sets.find(params[:field_set_id]).destroy!
         end
 

@@ -6,11 +6,14 @@ module CASE
     namespace :field_definitions do
 
       after_validation do 
-        @schema ||= Schema.find(params[:schema_id]) unless params[:schema_id].nil? 
+        @schema ||= Schema.find(params[:schema_id])
       end
 
       desc "Creates a new Field Definition in the Field Set"
-      post do 
+      post do
+        # must be schema owner to do this
+        authorize_owner!(@schema.user)
+
         @schema.field_sets.find(params[:field_set_id])
           .field_definitions.create!(params[:field_definition])
       end
@@ -25,6 +28,9 @@ module CASE
 
         desc "Updates a Field Definition in the Field Set"
         put do
+          # must be schema owner to do this
+          authorize_owner!(@schema.user)
+
           @schema.field_sets.find(params[:field_set_id])
                 .field_definitions.find(params[:field_definition_id])
                 .update_attributes!(params[:field_definition])
@@ -32,6 +38,9 @@ module CASE
 
         desc "Destroys a Field Definition in the Field Set"
         delete do 
+          # must be schema owner to do this
+          authorize_owner!(@schema.user)
+
           @schema.field_sets.find(params[:field_set_id])
             .field_definitions.find(params[:field_definition_id])
             .destroy!
