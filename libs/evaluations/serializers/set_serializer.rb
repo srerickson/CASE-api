@@ -11,6 +11,8 @@ module CASE
       #   end
       # end
 
+      has_one :user
+
     end
   end
 end
