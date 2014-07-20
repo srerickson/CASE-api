@@ -24,8 +24,7 @@ class UploadSerializer < ActiveModel::Serializer
 
     if object.image_and_not_svg? 
       ret[:sq60] = object.asset.url(:sq60)
-      ret[:sq120] = object.asset.url(:sq120)
-
+      # ret[:sq120] = object.asset.url(:sq120)
     end
 
     ret

@@ -10,8 +10,7 @@ class CompactCaseSerializer < ActiveModel::Serializer
   def _image_urls
     {
       sq60: object.image.url(:sq60),
-      sq100: object.image.url(:sq100)
-
+      sq200: object.image.url(:sq200)
     }
   end           
 

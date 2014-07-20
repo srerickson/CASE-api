@@ -9,8 +9,8 @@ class CaseImageUploader < CarrierWave::Uploader::Base
     "case_images/#{model.id}"
   end
 
-  version :sq100 do
-    process :resize_to_fit => [100,100]
+  version :sq200 do
+    process :resize_to_fit => [200,200]
   end
 
   version :sq60 do

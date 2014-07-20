@@ -13,10 +13,6 @@ class AssetUploader < CarrierWave::Uploader::Base
     process :resize_to_fit => [60,60]
   end
 
-  version :sq120, :if => :image_and_not_svg? do
-    process :resize_to_fit => [120,120]
-  end
-
   def store_dir
     "uploads/#{model.id}"
   end

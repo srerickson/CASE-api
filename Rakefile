@@ -20,6 +20,17 @@ task routes: :environment do
 end
 
 
+desc "Reprocess thumbnails"
+task thumbnails: :environment do 
+  Case.all.each do |c|
+    c.image.recreate_versions! if c.image.present?
+  end
+  Upload.all.each do |u|
+    u.asset.recreate_versions!
+  end
+end 
+
+
 namespace :db do
 
   desc "Migrate the database"
