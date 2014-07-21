@@ -54,13 +54,6 @@ module CASE
 
         mount CASE::FieldSets
 
-        namespace :cases do
-          desc "Gets a list of cases that use the schema."
-          get do 
-            @schema.cases.order(:name)
-          end
-        end # namespace :cases
-
       end # route_param :schema_id
     end # namespace :schemas
 

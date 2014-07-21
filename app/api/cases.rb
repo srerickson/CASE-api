@@ -13,7 +13,12 @@ module CASE
 
       desc "List Cases"
       get "/", each_serializer: CompactCaseSerializer do
-        Case.all
+        if params[:schema_id]
+          cases = Schema.find(params[:schema_id]).cases.uniq
+        else
+          cases = Case.all
+        end
+        cases
       end
 
       desc "Creates a new Case"
