@@ -42,6 +42,7 @@ module CASE
           # (field set updates are handled in their own action)
           params[:schema].delete(:_case_count)
           params[:schema].delete(:field_sets)
+          params[:schema].delete(:user)
           @schema.update_attributes!(params[:schema])
         end
 
