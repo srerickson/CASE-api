@@ -38,7 +38,9 @@ module CASE
         params do 
           requires :response
         end
-        post do 
+        post do
+          authenticate!
+          params[:response][:user_id] = current_user.id
           Response.create!(params[:response])
         end
 
@@ -57,11 +59,13 @@ module CASE
             requires :response
           end
           put do
+            authorize_owner!(@response.user)
             @response.update_attributes!(params[:response])
           end
 
           desc "Destroys an evaluation response"
-          delete do 
+          delete do
+            authorize_owner!(@response.user)
             @response.destroy!
           end
 

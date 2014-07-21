@@ -23,7 +23,8 @@ module CASE
         params do 
           requires :question
         end
-        post do 
+        post do
+          authorize_owner!(@set.user)
           @set.questions.create(params[:question])
         end
 
@@ -43,12 +44,14 @@ module CASE
             requires :question
           end
           put do
+            authorize_owner!(@set.user)
             params[:question].delete(:response_option_params)
             @question.update_attributes!(params[:question])
           end
 
           desc "Destroys an evaluation question"
-          delete do 
+          delete do
+            authorize_owner!(@set.user)
             @question.destroy!
           end
 

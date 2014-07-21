@@ -209,6 +209,20 @@ EQ_UPDATE=`curl -s -X PUT \
 echo "... updated the evaluation question ($EQ_ID): $EQ_UPDATE"
 
 
+EVAL_Q='{"question": {"question": "what is the capitol of Assyria?"}}'
+EQ_UPDATE=`curl -s -X PUT \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN_2" \
+     -d "$EVAL_Q" \
+     $BASE_URL/evaluations/sets/$ES_ID/questions/$EQ_ID`
+echo "... tried to update the evaluation question ($EQ_ID) without authorization (should fail) : $EQ_UPDATE"
+
+DEL_ES=`curl -s -X DELETE \
+     -H 'Content-Type:application/json' \
+     -H "Authorization: $TOKEN_2" \
+     $BASE_URL/evaluations/sets/$ES_ID`
+echo "... tried to delete the evaluation set without authorization (should fail): $DEL_ES"
+
 
 
 # Cleanup

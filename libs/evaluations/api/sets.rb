@@ -15,7 +15,9 @@ module CASE
         params do
           requires :set
         end
-        post do 
+        post do
+          authenticate!
+          params[:set][:user_id] = current_user.id
           Set.create!(params[:set])
         end
 
@@ -46,13 +48,15 @@ module CASE
           params do
             requires :set
           end
-          put do 
+          put do
+            authorize_owner!(@set.user)
             params[:set].delete(:questions)
             @set.update_attributes!(params[:set])
           end
 
           desc "Destroys and evaluation set"
-          delete do 
+          delete do
+            authorize_owner!(@set.user)
             @set.destroy! 
           end 
 
