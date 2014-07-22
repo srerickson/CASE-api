@@ -14,11 +14,21 @@ module CASE
       desc "List Cases"
       get "/", each_serializer: CompactCaseSerializer do
         if params[:schema_id]
-          cases = Schema.find(params[:schema_id]).cases.uniq
+          return Schema.find(params[:schema_id]).cases.uniq
+        elsif params[:set_id]          
+          if current_user and params[:user_evaluated]
+            return Case.joins(responses: :set)
+                .where(responses: {user_id: current_user.id})
+                .where(sets: {id: params[:set_id]})
+                .uniq
+          else
+            return Case.joins(responses: :set)
+              .where(sets: {id: params[:set_id]})
+              .uniq
+          end
         else
-          cases = Case.all
+          return Case.all
         end
-        cases
       end
 
       desc "Creates a new Case"

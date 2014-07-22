@@ -32,18 +32,6 @@ module CASE
             @set
           end
 
-          desc "Gets cases evaluated with the evaluation set"
-          get :cases, each_serializer: ::CompactCaseSerializer, root: :cases do 
-            if params[:own] and current_user
-              Case.joins(responses: :set)
-                  .where(responses: {user_id: current_user.id})
-                  .where(sets: {id: @set.id})
-                  .uniq
-            else
-              @set.cases.uniq
-            end
-          end
-
           desc "Updates an evaluation set"
           params do
             requires :set
