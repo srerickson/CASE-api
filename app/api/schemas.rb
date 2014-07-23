@@ -9,13 +9,11 @@ module CASE
 
       desc "Lists Schemas."
       get "/", each_serializer: CompactSchemaSerializer do
+        schemas = Schema.all 
         if params[:own] and current_user
-          return Schema.where(user_id: current_user.id)
-        elsif params[:first]
-          return Schema.first
-        else
-          return Schema.all 
+          schemas = schemas.where(user_id: current_user.id)
         end
+        schemas 
       end
 
       desc "Creates a Schema."
@@ -28,7 +26,10 @@ module CASE
       route_param :schema_id do
 
         before do
-          @schema = Schema.find(params[:schema_id])
+          if params[:schema_id] == 'first'
+            @schema ||= Schema.first
+          end 
+          @schema ||= Schema.find(params[:schema_id])
         end
 
         desc "Retrieves a Schema."

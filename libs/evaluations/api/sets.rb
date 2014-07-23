@@ -8,11 +8,7 @@ module CASE
 
         desc "Gets all evaluation sets"
         get "/", each_serializer: CompactSetSerializer do 
-          if params[:first]
-            return Set.first
-          else
-            return Set.all
-          end 
+          Set.all 
         end
 
         desc "Creates an evaluation set"
@@ -28,11 +24,14 @@ module CASE
         route_param :set_id do 
 
           before do 
+            if params[:set_id] == "first"
+              @set = Set.first
+            end
             @set ||= Set.find(params[:set_id])
           end
 
           desc "Gets an evaluation set"
-          get do 
+          get do
             @set
           end
 
