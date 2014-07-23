@@ -27,12 +27,17 @@ module CASE
       begin
         @jwt ||= JWT.decode(headers['Authorization'], ENV['CASE_SECRET'])
         uid = @jwt[0]['id']
+        updated_at = @jwt[0]['updated_at']
         exp = @jwt[1]['exp']
+
         @current_user ||= User.find(uid)
-        Time.now.to_i > exp ? nil : @current_user 
+
+        return nil if Time.now.to_i > exp
+        return nil if @current_user.updated_at.to_i != Time.parse(updated_at).to_i
+
+        @current_user 
         
-        # TODO: check that token and user params match?
-        # TODO: Token expiration date
+
       rescue JWT::DecodeError
         nil
       rescue ActiveRecord::RecordNotFound

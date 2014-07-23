@@ -1,23 +1,21 @@
-require 'password_hash'
+# require 'password_hash'
 
 class User < ActiveRecord::Base
 
-  validates_presence_of :name, :email, :password_hash
+  validates_presence_of :name, :email, :password_digest
   validates_uniqueness_of :email 
 
-  def password=(pass)
-    self.password_hash = PasswordHash.createHash(pass)
-  end
+  has_secure_password
 
   def jwt_token() 
-    self.attributes.select { |key| ["id", "email", "name",].include? key }
+    self.attributes.select { |key| ["id", "email", "name","updated_at"].include? key }
   end
 
 
   # class method for validating credentials
   def self.validate(email,pass)
     if user = User.where(email: email).first
-      PasswordHash.validatePassword(pass, user.password_hash) ? user : false 
+      user.try(:authenticate, pass)
     else
       false
     end

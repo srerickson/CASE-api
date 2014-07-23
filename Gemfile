@@ -21,6 +21,7 @@ gem "thin"
 gem "jwt"
 gem 'require_all'
 
+gem 'bcrypt', '~> 3.1.7'
 gem "racksh"
 
 group :development do 
