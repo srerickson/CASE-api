@@ -8,7 +8,11 @@ module CASE
 
         desc "Gets all evaluation sets"
         get "/", each_serializer: CompactSetSerializer do 
-          Set.all 
+          if params[:first]
+            return Set.first
+          else
+            return Set.all
+          end 
         end
 
         desc "Creates an evaluation set"
