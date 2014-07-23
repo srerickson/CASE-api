@@ -7,9 +7,9 @@ class FieldDefinition < ActiveRecord::Base
                           dependent: :destroy
 
 
-  validates_presence_of :name, :param, :field_set
+  validates_presence_of :name, :field_set #,param
 
-  validates_uniqueness_of :param, scope: :field_set_id
+  # validates_uniqueness_of :param, scope: :field_set_id
 
 
 end

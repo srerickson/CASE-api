@@ -6,8 +6,8 @@ class FieldSet < ActiveRecord::Base
                                dependent: :destroy, 
                                inverse_of: :field_set
                                
-  validates_presence_of :name, :param, :schema
-  validates_uniqueness_of :param, scope: :schema_id 
+  validates_presence_of :name, :schema #, :param
+  # validates_uniqueness_of :param, scope: :schema_id 
   
   accepts_nested_attributes_for :field_definitions, allow_destroy: true
 

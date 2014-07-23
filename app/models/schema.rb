@@ -15,7 +15,7 @@ class Schema  < ActiveRecord::Base
 
   belongs_to :user 
 
-  validates_presence_of :name, :param
+  validates_presence_of :name #, :param
 
   accepts_nested_attributes_for :field_sets, allow_destroy: true
 

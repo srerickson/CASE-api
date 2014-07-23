@@ -91,7 +91,7 @@ echo "... updated field definition (id: $FD_ID): $FD_UPDATE"
 
 FD2_UPDATE=`curl -s -X PUT \
      -H 'Content-Type:application/json' \
-     -d "{\"field_definition\":{\"param\": null}}" \
+     -d "{\"field_definition\":{\"name\": null}}" \
      -H "Authorization: $TOKEN_1" \
      $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD_ID `
 echo "... updated field definition with invalid data (should fail): $FD2_UPDATE"
