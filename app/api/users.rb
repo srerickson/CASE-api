@@ -20,11 +20,6 @@ module CASE
         end
         put do 
           user = User.validate(current_user.email, params[:user][:current_password] )
-
-          CASE::API.logger.info user
-          CASE::API.logger.info current_user
-          CASE::API.logger.info user==current_user
-
           if user and user == current_user
             params[:user].delete(:current_password)
             params[:user].delete(:configs)
