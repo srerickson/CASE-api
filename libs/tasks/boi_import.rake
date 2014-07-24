@@ -85,7 +85,7 @@ namespace :boi_import do
       #attached images 
       old_case["images"].each do |img|
         file_name = img["url"].split('/')[-1].split('?')[0]
-        if new_case.uploads.where(asset: file_name).empty?
+        if new_case.uploads.where(asset: file_name.gsub(/\%/,'_') ).empty?
           url = "http://birds.recursivepublic.net/"+img["url"]
           new_case.uploads.create(remote_asset_url: url)
           puts "...[+] uploaded #{file_name}"
