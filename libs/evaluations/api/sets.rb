@@ -42,6 +42,7 @@ module CASE
           put do
             authorize_owner!(@set.user)
             params[:set].delete(:questions)
+            params[:set].delete(:user)
             @set.update_attributes!(params[:set])
           end
 
