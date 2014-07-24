@@ -6,7 +6,7 @@ class FieldValue < ActiveRecord::Base
 
   belongs_to :case, inverse_of: :field_values  
 
-  validates_presence_of :case, :field_definition, :value
+  validates_presence_of :case, :field_definition #, :value
 
   # Example of searching by json value
   # FieldValue.where("value->>'text' = 'onetwothree'")
