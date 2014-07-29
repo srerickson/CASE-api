@@ -18,6 +18,9 @@ module CASE
           if params[:question_id]
             responses = responses.where(question_id: params[:question_id])
           end
+          if params[:question_ids]
+            responses = responses.where(question_id: params[:question_ids].split(",").map(&:to_i))
+          end
           if params[:case_id]
             responses = responses.where(case_id: params[:case_id])
           end
