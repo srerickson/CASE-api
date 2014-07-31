@@ -11,6 +11,10 @@ use Rack::Cors do
   end
 end
 
-use Rack::Static, urls: ["/case_images","/uploads"], root: "public"
+use Rack::Static, urls: [
+  "/assets",
+  "/case_images",
+  "/uploads"
+], root: "public", index: 'index.html'
 
 run CASE::API
