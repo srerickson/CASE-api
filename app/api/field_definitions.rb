@@ -26,6 +26,12 @@ module CASE
                 .field_definitions.find(params[:field_definition_id])
         end
 
+        desc 'Gets the values for the field definition'
+        get 'field_values' do 
+          FieldValue.where(field_definition_id: params[:field_definition_id])
+        end
+
+
         desc "Updates a Field Definition in the Field Set"
         put do
           # must be schema owner to do this

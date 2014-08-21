@@ -6,18 +6,17 @@ module CASE
     helpers CASE::AuthorizationHelpers
 
 
-    params do
-      requires :field_definition_ids
-    end
-    desc "Returns field values based on search params -- not case-specific"
-    get 'field_values' do
-      field_ids = params[:field_definition_ids].split(",").first(3).map(&:to_i)
-      values = FieldValue.where(field_definition_id: field_ids)
-      if params[:case_ids]
-        values = values.where(case_id:  params[:case_ids].split(",").first(200).map(&:to_i))
-      end
-      values
-    end
+    # params do
+    #   requires :field_definition_id
+    # end
+    # desc "Returns field values based on search params -- not case-specific"
+    # get 'field_values' do
+    #   values = FieldValue.where(field_definition_id: field_ids)
+    #   if params[:case_ids]
+    #     values = values.where(case_id:  params[:case_ids].split(",").first(200).map(&:to_i))
+    #   end
+    #   values
+    # end
 
 
     namespace :cases do
