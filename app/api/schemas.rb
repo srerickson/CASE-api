@@ -1,4 +1,4 @@
-require 'field_sets'
+require 'field_definitions'
 
 module CASE 
   class Schemas < Grape::API
@@ -44,7 +44,6 @@ module CASE
           # that should not be passed to update! 
           # (field set updates are handled in their own action)
           params[:schema].delete(:_case_count)
-          params[:schema].delete(:field_sets)
           params[:schema].delete(:user)
           @schema.update_attributes!(params[:schema])
         end
@@ -55,7 +54,7 @@ module CASE
           @schema.destroy!
         end
 
-        mount CASE::FieldSets
+        mount CASE::FieldDefinitions
 
       end # route_param :schema_id
     end # namespace :schemas

@@ -1,9 +1,8 @@
 class SchemaSerializer < CompactSchemaSerializer
 
-  attributes :_case_count
+  attributes :layout, :_case_count
 
-  has_many :field_sets, serializer: FieldSetSerializer
-
+  has_many :field_definitions, serializer: FieldDefinitionSerializer
   has_one :user
 
   def _case_count

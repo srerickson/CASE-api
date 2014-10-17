@@ -48,44 +48,27 @@ SCH_UPDATE=`curl -s -X PUT \
      $BASE_URL/schemas/$SCH_ID`
 echo "... updating schema description: $SCH_UPDATE"
 
-
-FS_ID=`curl -s -X POST \
-     -H 'Content-Type:application/json' \
-     -d '{"field_set": {"name": "Basic Info", "param": "basic_info"}}' \
-     -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets | jsawk "return this.field_set.id" ` 
-echo "... created field set with id: $FS_ID"
-
-
-SCH_UPDATE=`curl -s -X PUT \
-     -H 'Content-Type:application/json' \
-     -d "{\"schema\":{\"field_set_ids\": [$FS_ID]}}" \
-     -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID`
-echo "... updated schema (id: $SCH_ID) to include field set (id: $FS_ID): $SCH_UPDATE"
-
-
 FD_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"name\": \"URL\", \"param\": \"url\"}}" \
      -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions| jsawk "return this.field_definition.id" `
-echo "... added field definition to field set (id: $FS_ID) with id: $FD_ID"
+     $BASE_URL/schemas/$SCH_ID/field_definitions| jsawk "return this.field_definition.id" `
+echo "... added field definition to the schemas (id: $SCH_ID) with id: $FD_ID"
 
 
 FD2_ID=`curl -s -X POST \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"name\": \"Brand\", \"param\": \"brand\"}}" \
      -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions | jsawk "return this.field_definition.id" `
-echo "... added another field definition to field set (id: $FS_ID) with id: $FD2_ID"
+     $BASE_URL/schemas/$SCH_ID/field_definitions | jsawk "return this.field_definition.id" `
+echo "... added another field definition to the schemas (id: $SCH_ID) with id: $FD2_ID"
 
 
 FD_UPDATE=`curl -s -X PUT \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"description\": \"web address ...\"}}" \
      -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD_ID `
+     $BASE_URL/schemas/$SCH_ID/field_definitions/$FD_ID `
 echo "... updated field definition (id: $FD_ID): $FD_UPDATE"
 
 
@@ -93,7 +76,7 @@ FD2_UPDATE=`curl -s -X PUT \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"name\": null}}" \
      -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD_ID `
+     $BASE_URL/schemas/$SCH_ID/field_definitions/$FD_ID `
 echo "... updated field definition with invalid data (should fail): $FD2_UPDATE"
 
 
@@ -101,14 +84,14 @@ FD2_UPDATE=`curl -s -X PUT \
      -H 'Content-Type:application/json' \
      -d "{\"field_definition\":{\"param\": \"should_not_work\"}}" \
      -H "Authorization: $TOKEN_2" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD_ID `
+     $BASE_URL/schemas/$SCH_ID/field_definitions/$FD_ID `
 echo "... non-authorized user updated field definition (should fail): $FD2_UPDATE"
 
 
 FD2_DELETE=`curl -s -X DELETE \
      -H 'Content-Type:application/json' \
      -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID/field_definitions/$FD2_ID | jsawk "return this.field_definition.id"`
+     $BASE_URL/schemas/$SCH_ID/field_definitions/$FD2_ID | jsawk "return this.field_definition.id"`
 echo "... deleted field definition with id: $FD2_DELETE"
 
 
@@ -146,11 +129,11 @@ FV_UPDATE=`curl -s -X PUT \
 echo "... update field value (id: $FV_ID): $FV_UPDATE"
 
 
-DEL_FS=`curl -s -X DELETE \
-     -H 'Content-Type:application/json' \
-     -H "Authorization: $TOKEN_1" \
-     $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID | jsawk "return this.field_set.id" `
-echo "... deleted field set with id: $DEL_FS"
+# DEL_FS=`curl -s -X DELETE \
+#      -H 'Content-Type:application/json' \
+#      -H "Authorization: $TOKEN_1" \
+#      $BASE_URL/schemas/$SCH_ID/field_sets/$FS_ID | jsawk "return this.field_set.id" `
+# echo "... deleted field set with id: $DEL_FS"
 
 
 # File Upload Test

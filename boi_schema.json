@@ -2,445 +2,414 @@
   "schema": {
     "name": "Birds of the Internet, v.1",
     "param": "boi-v1",
-    "field_sets_attributes": [
+    "field_definitions_attributes": [
+      {
+        "name": "URL",
+        "param": "url",
+        "value_options": {
+          "short": true,
+          "url": true
+        }
+      },{
+        "name": "Habitat",
+        "param": "habitat",
+        "type": "SelectField",
+        "value_options": {
+          "select": [
+            {
+              "id": 1,
+              "name": "UNIX + Internet",
+              "description": "Projects that directly interacts with or depends on the ecology of low-level UNIX-based tools and Internet-based services such as UNIX operating systems, C compilers, source code management systems (SCM), POSIX standard components, internet protocols and services.  "
+            },{
+              "id": 2,
+              "name": "AppStore",
+              "description": "Any of various platforms that provide \"apps\" which are tied (tethered) to specific devices, specific software development platforms and/or sold through specific outlets (like the Apple App Store)."
+            },{
+              "id": 3,
+              "name": "API/Application Specific",
+              "description": "Any of various projects that depend on an Application Programming Interface (open or not) to allow for the existence of the service (e.g. Google Maps, Facebook's Graph API)."
+            },{
+              "id": 4,
+              "name": "Gaming Environments/Platforms",
+              "description": "Games or persistent worlds that rely on specific software or hardware environments (which may in turn rely on other components and services) and cannot be accessed without that software/hardware."
+            },{
+              "id": 5,
+              "name": "HTML, HTTP, and Associated Services",
+              "description": "Primarily web-based.  Uses assorted tools and technologies that are primarily accessible through ports like http, https, etc. "
+            },{
+              "id": 6,
+              "name": "Television and Internet Video",
+              "description": "Any of various projects those primary ecology is moving visual media."
+            },{
+              "id": 7,
+              "name": "Wiki",
+              "description": "Wiki-powered website for community organizing, documentation and related projects"
+            },{
+              "id": 8,
+              "name": "IRC",
+              "description": "Internet Relay Chat "
+            },{
+              "id": 9,
+              "name": "Darknet",
+              "description": "Private, anonymous internetworked machines that are not accessible via Internet without certain applications (Tor, GNUnet,  VPN clients, P2P clients). Examples include but are not limited to: Freenet, GNUnet, Inivisible Internet Project, Onionland."
+            },{
+              "id": 10,
+              "name": "Mobile",
+              "description": "Operates primarily as a stand-alone application on a suitable mobile device (phone, tablet. May be downloaded via an app store."
+            }
+          ]
+        }
+      },{
+        "name": "Classification",
+        "param": "genus_type",
+        "type": "SelectField",
+        "value_options": {
+          "select": [
+            {
+              "id": 1,
+              "name": "FOSS",
+              "description": "Free and Open Source Software"
+            },{
+              "id": 3,
+              "name": "Social Networking",
+              "description": "Internet-based projects and companies specialized in social networking"
+            },{
+              "id": 4,
+              "name": "Education",
+              "description": "Educational platforms and projects based on the Internet"
+            },{
+              "id": 5,
+              "name": "Science and/or Engineering",
+              "description": "Projects that allow participation in science or engineering, such as citizen science, and including medical research"
+            },{
+              "id": 6,
+              "name": "Citizen Journalism",
+              "description": "user contributed news, video, etc."
+            },{
+              "id": 7,
+              "name": "Games/Persistent Worlds",
+              "description": "online games, role-playing games, persistent virtual worlds etc."
+            },{
+              "id": 8,
+              "name": "Craft, DIY, Consumer goods",
+              "description": "Projects that enable participation in making, remaking or learning how to make things, often for sale."
+            },{
+              "id": 9,
+              "name": "Activist",
+              "description": "groups organized for social or political change; independent media organizations; hacktivists; advocates and other coalitions."
+            },{
+              "id": 10,
+              "name": "Internet Forum / Mailing List",
+              "description": "Discussion Forums, Image Boards, Mailing Lists, Underground communities etc."
+            },{
+              "id": 11,
+              "name": "Culture Industry",
+              "description": "Media making from mainstream to remix to participatory/fan culture."
+            },{
+              "id": 13,
+              "name": "Social Entrepreneurialism",
+              "description": "Focused on volunteerism, fundraising, or cause-related participation"
+            }
+          ]
+        }
+      },{
+        "name": "Brand",
+        "param": "brand",
+        "description": "Describe how the brand / logo / visual identity is positioned."
+      },{
+            "name": "FSE Name",
+            "param": "fse_name",
+            "description": "What is the name of the formally organized or legally recognized entity (FSE)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?"
+      },{
+        "name": "FSE Organization Style",
+        "param": "fse_org_style",
+        "type": "SelectField",
+        "value_options": {
+          "select": [
+            {
+              "id": 1,
+              "name": "Meritocracy",
+              "description": "Meritocracy, in the first, most administrative sense, is a system of government or other administration (such as business administration) wherein appointments are made and responsibilities assigned to individuals based upon their \"merits\", namely intelligence, technical skill, credentials, creativity, and education, determined through evaluations or examinations."
+            },{
+              "id": 2,
+              "name": "Self-managed worker cooperative (Autogestion)",
+              "description": "Autogestion is often the decision-making model used in co-operative economic arrangements, such as worker cooperatives, workers' councils, participatory economics, political collectives of various sorts, and similar arrangements where the workplace or the project operates without a boss. Decision making is made by all participants of the project during council meetings and small decisions are made by those implementing them while coordinating with the rest and following more general agreements. Horizontal distribution of political power and autonomy are central to autogestion."
+            },{
+              "id": 3,
+              "name": "Charismatic Leadership/Benevelont Dictatorship",
+              "description": "An organization with one leader or decision maker whose authority rests on the consent of the governed and/or his/her charisma.  Other forms of organization may supplement it (hierarchy, meritocracacy,or consensus amongst the staff or participants) but the leader's authority is final and effective."
+            },{
+              "id": 4,
+              "name": "Radical decentralization",
+              "description": "Acephalous, loosely networked, intended to devolve all decision making to groups as local (and as small) as possible."
+            },{
+              "id": 5,
+              "name": "Procedural consensus democracy",
+              "description": "Any form of democratic organization that relies heavily on rules, voting and procedures for decision making and which acts only with the consent of the majority (defined by procedure).  "
+            },{
+              "id": 6,
+              "name": "Bureaucratic Hierarchy",
+              "description": "Classic bureaucratic organization, with departments, roles and duties clearly defined, and a chain of command with a roughly pyramidal structure"
+            },{
+              "id": 7,
+              "name": "Overlapping Networks of Weak Ties",
+              "description": "Organized primarily by weak ties (\"friends\") grouped into overlapping networks."
+            },{
+              "id": 8,
+              "name": "Flat minimally organized network",
+              "description": "A group with no obvious visible organization in which everyone can potentially interact with everyone else. Exemples include: mailing lists, internet forums, IRC channels"
+            },{
+              "id": 9,
+              "name": "Consumer Market",
+              "description": "An unorganized mass whose only relation to each other is a mutual relationship to a producer. "
+            },{
+              "id": 10,
+              "name": "Franchise",
+              "description": "Regionally or Locally specific collectives connected to a global network that gives identity to or sustains the local collectives. "
+            },{
+              "id": 11,
+              "name": "Just One Guy.",
+              "description": "Seriously, It's just one guy.  And maybe some help from some friends."
+            },{
+              "id": 12,
+              "name": "Cryptohierarchy",
+              "description": "An aversion to hierarchy resulting in hierarchy.  See http://www.youtube.com/watch?v=yY-7_uzJL6w"
+            },{
+              "id": 13,
+              "name": "Produsers",
+              "description": "OP framed as user-producers and collaborators"
+            }
+          ]
+        } 
+      },{
+        "name": "FSE Owner/Founder",
+        "param": "fse_owner_founder"
+      },{
+        "name": "FSE Significant Members",
+        "param": "fse_significant_member"
+      },{
+        "name": "FSE Mission Statement",
+        "param": "fse_mission_statement"
+      },{
+        "name": "OP Name",
+        "param": "op_name",
+        "description": "What is the name of the formally organized or legally recognized entity (OP)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?"
+      },{
+        "name": "OP Organization Style",
+        "param": "op_org_style",
+        "type": "SelectField",
+        "value_options": {
+          "select": [
+            {
+              "id": 1,
+              "name": "Meritocracy",
+              "description": "Meritocracy, in the first, most administrative sense, is a system of government or other administration (such as business administration) wherein appointments are made and responsibilities assigned to individuals based upon their \"merits\", namely intelligence, technical skill, credentials, creativity, and education, determined through evaluations or examinations."
+            },{
+              "id": 2,
+              "name": "Self-managed worker cooperative (Autogestion)",
+              "description": "Autogestion is often the decision-making model used in co-operative economic arrangements, such as worker cooperatives, workers' councils, participatory economics, political collectives of various sorts, and similar arrangements where the workplace or the project operates without a boss. Decision making is made by all participants of the project during council meetings and small decisions are made by those implementing them while coordinating with the rest and following more general agreements. Horizontal distribution of political power and autonomy are central to autogestion."
+            },{
+              "id": 3,
+              "name": "Charismatic Leadership/Benevelont Dictatorship",
+              "description": "An organization with one leader or decision maker whose authority rests on the consent of the governed and/or his/her charisma.  Other forms of organization may supplement it (hierarchy, meritocracacy,or consensus amongst the staff or participants) but the leader's authority is final and effective."
+            },{
+              "id": 4,
+              "name": "Radical decentralization",
+              "description": "Acephalous, loosely networked, intended to devolve all decision making to groups as local (and as small) as possible."
+            },{
+              "id": 5,
+              "name": "Procedural consensus democracy",
+              "description": "Any form of democratic organization that relies heavily on rules, voting and procedures for decision making and which acts only with the consent of the majority (defined by procedure).  "
+            },{
+              "id": 6,
+              "name": "Bureaucratic Hierarchy",
+              "description": "Classic bureaucratic organization, with departments, roles and duties clearly defined, and a chain of command with a roughly pyramidal structure"
+            },{
+              "id": 7,
+              "name": "Overlapping Networks of Weak Ties",
+              "description": "Organized primarily by weak ties (\"friends\") grouped into overlapping networks."
+            },{
+              "id": 8,
+              "name": "Flat minimally organized network",
+              "description": "A group with no obvious visible organization in which everyone can potentially interact with everyone else. Exemples include: mailing lists, internet forums, IRC channels"
+            },{
+              "id": 9,
+              "name": "Consumer Market",
+              "description": "An unorganized mass whose only relation to each other is a mutual relationship to a producer. "
+            },{
+              "id": 10,
+              "name": "Franchise",
+              "description": "Regionally or Locally specific collectives connected to a global network that gives identity to or sustains the local collectives. "
+            },{
+              "id": 11,
+              "name": "Just One Guy.",
+              "description": "Seriously, It's just one guy.  And maybe some help from some friends."
+            },{
+              "id": 12,
+              "name": "Cryptohierarchy",
+              "description": "An aversion to hierarchy resulting in hierarchy.  See http://www.youtube.com/watch?v=yY-7_uzJL6w"
+            },{
+              "id": 13,
+              "name": "Produsers",
+              "description": "OP framed as user-producers and collaborators"
+            }
+          ]
+        }
+      },{
+        "name": "OP Founder/VIPs",
+        "param": "op_vip_founders"
+      },{
+        "name": "OP Typical Members",
+        "param": "op_typical_member"
+      },{
+        "name": "Is the OP self aware?",
+        "param": "foritself",
+        "description": "Is the OP in question aware of itself as an entity? Does it actively promote a sense of belonging, community or participation? Or is it identified by a second order observation of people, behavior, or designed to display \"emergent\" behavior, or the effects of collective behavior?"
+      },{
+        "name": "Formation",
+        "param": "formation",
+        "description": "How did the entity form? From OP to FSE or the opposite?"
+      },{
+        "name": "History",   
+        "param": "history",
+        "description": "Historicize the entity. Give a brief description of the stages it has been through from founding to current form"
+      },{
+        "name": "Lifespan",
+        "param": "lifespan",
+        "description": "Does the project still exist, is it endangered, extinct? Has it been outcompeted by similar entities? What were the causes of its death?"
+      },{
+        "name": "Resource",
+        "param": "resource",
+        "description": "What is the resource provided? Who is it provided to (OP, FSE or beyond?), on whose behalf is it provided?"  
+      },{
+        "name": "Availability",
+        "param": "availability",
+        "description": "What is the Availability of the resource? Is it licensed? Sold? what are the Terms of Service?"
+      },{
+        "name": "Goals",
+        "param": "participation",
+        "description": "Who participates in the setting or changing of the goals? FSE, OP, Both, Neither?"
+      },{
+        "name": "Tasks",
+        "param": "tasks",
+        "description": "Is there a clear statement of what the project does? Are tasks clearly defined? What constitutes participation and how does one know if one is done or not? Who gets to participate?"  
+      },{
+        "name": "Task Modularity",
+        "param": "modularity",
+        "description": "What is the level of investment necessary for the task (i.e. how hard is any given task to accomplish?)"  
+      },{
+        "name": "Task Granularity",
+        "param": "granularity",
+        "description": "What is the Granularity of the Tasks?"  
+      },{
+        "name": "Task Metrics",
+        "param": "metrics",
+        "description": "How are tasks measured? What constitutes completion of a task?"
+      },{
+        "name": "Tangible Problem?",
+        "param": "tangible_problem",
+        "description": "Is this entity designed in order to solve a specific, tangible problem? If so, what is the concrete problem it seeks to solve?",
+        "type": "SelectField",
+        "value_options": {
+          "select": [
+            {"id": 1, "name": "Yes", "description": ""},
+            {"id": 2, "name": "No", "description": ""}
+          ]
+        }
+      },{
+        "name": "Tangible Problem",
+        "param": "tangible_problem_detail",
+        "description": "What is the concrete problem it seeks to solve?",
+        "value_options": {
+          "short": true
+        }
+      },{
+        "param": "alliances",
+        "name": "Alliances",
+        "description": "Describe partnerships (mutual goals or compatibilities) and/or alliances (membership in a larger network)"
+      },{
+        "param": "clients",
+        "name": "Project Clients",
+        "description": "Describe the project clients (on whose behalf does the entity provide services)?"
+      },{
+        "param": "sponsors",
+        "name": "Project Sponsors",
+        "description": "Describe the project sponsors, i.e. entities that either directly fund it (sponsors, owners, acquirers)?"
+      },{
+        "param": "elites",
+        "name": "Elites",
+        "description": "Describe those people who have special forms of access to an entity based on their authority? Charismatic authority, legitimate authority, regulatory authority, political authority, etc?"
+      },{
+        "param": "summary",
+        "name": "Summary"
+      },{
+        "param": "birder_credits",
+        "name": "Author Credits",
+        "description": "Indicate authorial credit(s) for this case study"
+      }
+    ],
+    "layout": [
       {
         "name": "Basic Info",
         "param": "basic_info",
-        "order": 1,
         "description": "What kind of entity is it? Where does it live and on what does it survive? What \"style\" or \"brand\" identifies it, how might it be classified? Is this project unlike any other or one of a clearly defined species?",
-        "field_definitions_attributes": [
-          {
-            "name": "URL",
-            "param": "url",
-            "order": 0,
-            "value_options": {
-              "short": true,
-              "url": true
-            }
-          },{
-            "name": "Habitat",
-            "param": "habitat",
-            "order": 1,
-            "type": "SelectField",
-            "value_options": {
-              "select": [
-                {
-                  "id": 1,
-                  "name": "UNIX + Internet",
-                  "description": "Projects that directly interacts with or depends on the ecology of low-level UNIX-based tools and Internet-based services such as UNIX operating systems, C compilers, source code management systems (SCM), POSIX standard components, internet protocols and services.  "
-                },{
-                  "id": 2,
-                  "name": "AppStore",
-                  "description": "Any of various platforms that provide \"apps\" which are tied (tethered) to specific devices, specific software development platforms and/or sold through specific outlets (like the Apple App Store)."
-                },{
-                  "id": 3,
-                  "name": "API/Application Specific",
-                  "description": "Any of various projects that depend on an Application Programming Interface (open or not) to allow for the existence of the service (e.g. Google Maps, Facebook's Graph API)."
-                },{
-                  "id": 4,
-                  "name": "Gaming Environments/Platforms",
-                  "description": "Games or persistent worlds that rely on specific software or hardware environments (which may in turn rely on other components and services) and cannot be accessed without that software/hardware."
-                },{
-                  "id": 5,
-                  "name": "HTML, HTTP, and Associated Services",
-                  "description": "Primarily web-based.  Uses assorted tools and technologies that are primarily accessible through ports like http, https, etc. "
-                },{
-                  "id": 6,
-                  "name": "Television and Internet Video",
-                  "description": "Any of various projects those primary ecology is moving visual media."
-                },{
-                  "id": 7,
-                  "name": "Wiki",
-                  "description": "Wiki-powered website for community organizing, documentation and related projects"
-                },{
-                  "id": 8,
-                  "name": "IRC",
-                  "description": "Internet Relay Chat "
-                },{
-                  "id": 9,
-                  "name": "Darknet",
-                  "description": "Private, anonymous internetworked machines that are not accessible via Internet without certain applications (Tor, GNUnet,  VPN clients, P2P clients). Examples include but are not limited to: Freenet, GNUnet, Inivisible Internet Project, Onionland."
-                },{
-                  "id": 10,
-                  "name": "Mobile",
-                  "description": "Operates primarily as a stand-alone application on a suitable mobile device (phone, tablet. May be downloaded via an app store."
-                }
-
-              ]
-            }
-          },{
-            "name": "Classification",
-            "param": "genus_type",
-            "order": 2,
-            "type": "SelectField",
-            "value_options": {
-              "select": [
-                {
-                  "id": 1,
-                  "name": "FOSS",
-                  "description": "Free and Open Source Software"
-                },{
-                  "id": 3,
-                  "name": "Social Networking",
-                  "description": "Internet-based projects and companies specialized in social networking"
-                },{
-                  "id": 4,
-                  "name": "Education",
-                  "description": "Educational platforms and projects based on the Internet"
-                },{
-                  "id": 5,
-                  "name": "Science and/or Engineering",
-                  "description": "Projects that allow participation in science or engineering, such as citizen science, and including medical research"
-                },{
-                  "id": 6,
-                  "name": "Citizen Journalism",
-                  "description": "user contributed news, video, etc."
-                },{
-                  "id": 7,
-                  "name": "Games/Persistent Worlds",
-                  "description": "online games, role-playing games, persistent virtual worlds etc."
-                },{
-                  "id": 8,
-                  "name": "Craft, DIY, Consumer goods",
-                  "description": "Projects that enable participation in making, remaking or learning how to make things, often for sale."
-                },{
-                  "id": 9,
-                  "name": "Activist",
-                  "description": "groups organized for social or political change; independent media organizations; hacktivists; advocates and other coalitions."
-                },{
-                  "id": 10,
-                  "name": "Internet Forum / Mailing List",
-                  "description": "Discussion Forums, Image Boards, Mailing Lists, Underground communities etc."
-                },{
-                  "id": 11,
-                  "name": "Culture Industry",
-                  "description": "Media making from mainstream to remix to participatory/fan culture."
-                },{
-                  "id": 13,
-                  "name": "Social Entrepreneurialism",
-                  "description": "Focused on volunteerism, fundraising, or cause-related participation"
-                }
-              ]
-            }
-          },{
-            "name": "Brand",
-            "param": "brand",
-            "description": "Describe how the brand / logo / visual identity is positioned.",
-            "order": 3
-          }
-        ]
+        "field_definitions": ["url","habitat","genus_type","brand"]
       },
       {
         "name": "Structure",
         "param": "structure",
-        "order": 2,
         "description": "One working hypothesis in this project is that in any instance of participation (real or imagined) there are two kinds of organizations: formally organized, funded or legally sanctioned entities (Formal Social Enterprises or FSEs) and informally organized, more or less open, and fluid publics (Organized Publics or OPs). Cases that do not appear to have this dyadic structure could possibly reduce to familiar organizational forms (e.g. a corporation and its market of consumers; a mass media journalistic organization and its reading public, an acephalous social movement etc.). Information in this section should help outline the basic size, extent and relationship of these two entities.",
-        "field_definitions_attributes": [
-          {
-            "name": "FSE Name",
-            "param": "fse_name",
-            "description": "What is the name of the formally organized or legally recognized entity (FSE)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?",
-            "order": 0
-          },{
-            "name": "FSE Organization Style",
-            "param": "fse_org_style",
-            "order": 1,
-            "type": "SelectField",
-            "value_options": {
-              "select": [
-                {
-                  "id": 1,
-                  "name": "Meritocracy",
-                  "description": "Meritocracy, in the first, most administrative sense, is a system of government or other administration (such as business administration) wherein appointments are made and responsibilities assigned to individuals based upon their \"merits\", namely intelligence, technical skill, credentials, creativity, and education, determined through evaluations or examinations."
-                },{
-                  "id": 2,
-                  "name": "Self-managed worker cooperative (Autogestion)",
-                  "description": "Autogestion is often the decision-making model used in co-operative economic arrangements, such as worker cooperatives, workers' councils, participatory economics, political collectives of various sorts, and similar arrangements where the workplace or the project operates without a boss. Decision making is made by all participants of the project during council meetings and small decisions are made by those implementing them while coordinating with the rest and following more general agreements. Horizontal distribution of political power and autonomy are central to autogestion."
-                },{
-                  "id": 3,
-                  "name": "Charismatic Leadership/Benevelont Dictatorship",
-                  "description": "An organization with one leader or decision maker whose authority rests on the consent of the governed and/or his/her charisma.  Other forms of organization may supplement it (hierarchy, meritocracacy,or consensus amongst the staff or participants) but the leader's authority is final and effective."
-                },{
-                  "id": 4,
-                  "name": "Radical decentralization",
-                  "description": "Acephalous, loosely networked, intended to devolve all decision making to groups as local (and as small) as possible."
-                },{
-                  "id": 5,
-                  "name": "Procedural consensus democracy",
-                  "description": "Any form of democratic organization that relies heavily on rules, voting and procedures for decision making and which acts only with the consent of the majority (defined by procedure).  "
-                },{
-                  "id": 6,
-                  "name": "Bureaucratic Hierarchy",
-                  "description": "Classic bureaucratic organization, with departments, roles and duties clearly defined, and a chain of command with a roughly pyramidal structure"
-                },{
-                  "id": 7,
-                  "name": "Overlapping Networks of Weak Ties",
-                  "description": "Organized primarily by weak ties (\"friends\") grouped into overlapping networks."
-                },{
-                  "id": 8,
-                  "name": "Flat minimally organized network",
-                  "description": "A group with no obvious visible organization in which everyone can potentially interact with everyone else. Exemples include: mailing lists, internet forums, IRC channels"
-                },{
-                  "id": 9,
-                  "name": "Consumer Market",
-                  "description": "An unorganized mass whose only relation to each other is a mutual relationship to a producer. "
-                },{
-                  "id": 10,
-                  "name": "Franchise",
-                  "description": "Regionally or Locally specific collectives connected to a global network that gives identity to or sustains the local collectives. "
-                },{
-                  "id": 11,
-                  "name": "Just One Guy.",
-                  "description": "Seriously, It's just one guy.  And maybe some help from some friends."
-                },{
-                  "id": 12,
-                  "name": "Cryptohierarchy",
-                  "description": "An aversion to hierarchy resulting in hierarchy.  See http://www.youtube.com/watch?v=yY-7_uzJL6w"
-                },{
-                  "id": 13,
-                  "name": "Produsers",
-                  "description": "OP framed as user-producers and collaborators"
-                }
-              ]
-            } 
-          },{
-            "name": "FSE Owner/Founder",
-            "param": "fse_owner_founder",
-            "order": 2
-          },{
-            "name": "FSE Significant Members",
-            "param": "fse_significant_member",
-            "order": 3
-          },{
-            "name": "FSE Mission Statement",
-            "param": "fse_mission_statement",
-            "order": 4
-          },{
-            "name": "OP Name",
-            "param": "op_name",
-            "description": "What is the name of the formally organized or legally recognized entity (OP)? Note how this differs from the name applied to the organized public or project (e.g. Linux / Linux foundation; Wikipedia, Wikimedia)?",
-            "order": 5
-          },{
-            "name": "OP Organization Style",
-            "param": "op_org_style",
-            "order": 6,
-            "type": "SelectField",
-            "value_options": {
-              "select": [
-                {
-                  "id": 1,
-                  "name": "Meritocracy",
-                  "description": "Meritocracy, in the first, most administrative sense, is a system of government or other administration (such as business administration) wherein appointments are made and responsibilities assigned to individuals based upon their \"merits\", namely intelligence, technical skill, credentials, creativity, and education, determined through evaluations or examinations."
-                },{
-                  "id": 2,
-                  "name": "Self-managed worker cooperative (Autogestion)",
-                  "description": "Autogestion is often the decision-making model used in co-operative economic arrangements, such as worker cooperatives, workers' councils, participatory economics, political collectives of various sorts, and similar arrangements where the workplace or the project operates without a boss. Decision making is made by all participants of the project during council meetings and small decisions are made by those implementing them while coordinating with the rest and following more general agreements. Horizontal distribution of political power and autonomy are central to autogestion."
-                },{
-                  "id": 3,
-                  "name": "Charismatic Leadership/Benevelont Dictatorship",
-                  "description": "An organization with one leader or decision maker whose authority rests on the consent of the governed and/or his/her charisma.  Other forms of organization may supplement it (hierarchy, meritocracacy,or consensus amongst the staff or participants) but the leader's authority is final and effective."
-                },{
-                  "id": 4,
-                  "name": "Radical decentralization",
-                  "description": "Acephalous, loosely networked, intended to devolve all decision making to groups as local (and as small) as possible."
-                },{
-                  "id": 5,
-                  "name": "Procedural consensus democracy",
-                  "description": "Any form of democratic organization that relies heavily on rules, voting and procedures for decision making and which acts only with the consent of the majority (defined by procedure).  "
-                },{
-                  "id": 6,
-                  "name": "Bureaucratic Hierarchy",
-                  "description": "Classic bureaucratic organization, with departments, roles and duties clearly defined, and a chain of command with a roughly pyramidal structure"
-                },{
-                  "id": 7,
-                  "name": "Overlapping Networks of Weak Ties",
-                  "description": "Organized primarily by weak ties (\"friends\") grouped into overlapping networks."
-                },{
-                  "id": 8,
-                  "name": "Flat minimally organized network",
-                  "description": "A group with no obvious visible organization in which everyone can potentially interact with everyone else. Exemples include: mailing lists, internet forums, IRC channels"
-                },{
-                  "id": 9,
-                  "name": "Consumer Market",
-                  "description": "An unorganized mass whose only relation to each other is a mutual relationship to a producer. "
-                },{
-                  "id": 10,
-                  "name": "Franchise",
-                  "description": "Regionally or Locally specific collectives connected to a global network that gives identity to or sustains the local collectives. "
-                },{
-                  "id": 11,
-                  "name": "Just One Guy.",
-                  "description": "Seriously, It's just one guy.  And maybe some help from some friends."
-                },{
-                  "id": 12,
-                  "name": "Cryptohierarchy",
-                  "description": "An aversion to hierarchy resulting in hierarchy.  See http://www.youtube.com/watch?v=yY-7_uzJL6w"
-                },{
-                  "id": 13,
-                  "name": "Produsers",
-                  "description": "OP framed as user-producers and collaborators"
-                }
-              ]
-            }
-          },{
-            "name": "OP Founder/VIPs",
-            "param": "op_vip_founders",
-            "order": 7
-          },{
-            "name": "OP Typical Members",
-            "param": "op_typical_member",
-            "order": 8
-          },{
-            "name": "Is the OP self aware?",
-            "param": "foritself",
-            "description": "Is the OP in question aware of itself as an entity? Does it actively promote a sense of belonging, community or participation? Or is it identified by a second order observation of people, behavior, or designed to display \"emergent\" behavior, or the effects of collective behavior?",
-            "order": 9
-          }
+        "field_definitions": [ 
+          "fse_name",
+          "fse_org_style",
+          "fse_owner_founder",
+          "fse_significant_member",
+          "fse_mission_statement",
+          "op_name",
+          "op_org_style",
+          "op_vip_founders",
+          "op_typical_member",
+          "foritself"
         ]
       },
       {
         "name": "Ontogeny",
         "param": "ontogeny",
-        "order": 3,
         "description": "Ontogeny covers the historical formation of the Bird. Many entities in this database are changing quickly, so this is a place to record the changes each case has been through from its origin to now. When was it founded, does it still exist, what stages has it gone through (either self-described or discovered through research/interview). In particular, how is the FSE/OP relationship related to its formation (did it start as an OP and create an FSE as it grew, or start as an FSE and try to magic an OP into existence, or neither?)",
-        "field_definitions_attributes": [
-          {
-            "name": "Formation",
-            "param": "formation",
-            "description": "How did the entity form? From OP to FSE or the opposite?",
-            "order": 1
-          },{
-            "name": "History",   
-            "param": "history",
-            "description": "Historicize the entity. Give a brief description of the stages it has been through from founding to current form",
-            "order": 2
-          },{
-            "name": "Lifespan",
-            "param": "lifespan",
-            "description": "Does the project still exist, is it endangered, extinct? Has it been outcompeted by similar entities? What were the causes of its death?",
-            "order": 3
-          }
-        ]
+        "field_definitions": ["formation","history","lifespan"]
       },
       {
         "name": "Behavior",
         "param": "behavior",
-        "order": 4,
         "description": "This section asks for detailed information on what the Bird does: what \"resource\" is provided, for whom and why? Is it making a product, providing a service, or something else entirely? What are the stated or unstated goals of the project, and which tasks are designed to achieve these goals? How are the tasks organized, are they tightly or loosely structured? Are there clear comparable metrics for completion of a task? A key goal of this section is to articulate what level of meaningful participation people are engaging in with the project. Are they mere clickworkers or \"Turkers\" or are they meaningfully and deeply engaged in both the solving of a problem and the definition of what the problem is?",
-
-        "field_definitions_attributes": [
-          {
-            "name": "Resource",
-            "param": "resource",
-            "order": 1,
-            "description": "What is the resource provided? Who is it provided to (OP, FSE or beyond?), on whose behalf is it provided?"  
-          },{
-            "name": "Availability",
-            "param": "availability",
-            "order": 2,
-            "description": "What is the Availability of the resource? Is it licensed? Sold? what are the Terms of Service?"
-          },{
-            "name": "Goals",
-            "param": "participation",
-            "order": 3,
-            "description": "Who participates in the setting or changing of the goals? FSE, OP, Both, Neither?"
-          },{
-            "name": "Tasks",
-            "param": "tasks",
-            "order": 4,
-            "description": "Is there a clear statement of what the project does? Are tasks clearly defined? What constitutes participation and how does one know if one is done or not? Who gets to participate?"  
-          },{
-            "name": "Task Modularity",
-            "param": "modularity",
-            "order": 5,
-            "description": "What is the level of investment necessary for the task (i.e. how hard is any given task to accomplish?)"  
-          },{
-            "name": "Task Granularity",
-            "param": "granularity",
-            "order": 6,
-            "description": "What is the Granularity of the Tasks?"  
-          },{
-            "name": "Task Metrics",
-            "param": "metrics",
-            "order": 7,
-            "description": "How are tasks measured? What constitutes completion of a task?"
-          },{
-            "name": "Tangible Problem?",
-            "param": "tangible_problem",
-            "description": "Is this entity designed in order to solve a specific, tangible problem? If so, what is the concrete problem it seeks to solve?",
-            "order": 8,
-            "type": "SelectField",
-            "value_options": {
-              "select": [
-                {"id": 1, "name": "Yes", "description": ""},
-                {"id": 2, "name": "No", "description": ""}
-              ]
-            }
-
-          },{
-            "name": "Tangible Problem",
-            "param": "tangible_problem_detail",
-            "order": 9,
-            "description": "What is the concrete problem it seeks to solve?",
-            "value_options": {
-              "short": true
-            }
-          }
+        "field_definitions": [
+          "resource",
+          "availability",
+          "participation",
+          "tasks",
+          "modularity",
+          "granularity",
+          "metrics",
+          "tangible_problem",
+          "tangible_problem_detail"
         ]
       },
       {
         "name": "Mating",
         "param": "mating",
-        "order": 5,
         "description": "This section asks for information about how this Bird relates to others and to the ecology around it. Are they (or were they) bought/acquired by some other Bird, is there a funding relationship or a \"client\" relationship which allows them to exist. How do they sustain (and reproduce) themselves as a project?",
-        "field_definitions_attributes": [  
-          {
-            "param": "alliances",
-            "name": "Alliances",
-            "description": "Describe partnerships (mutual goals or compatibilities) and/or alliances (membership in a larger network)",
-            "order": 0
-          },{
-            "param": "clients",
-            "name": "Project Clients",
-            "description": "Describe the project clients (on whose behalf does the entity provide services)?",
-            "order": 1
-          },{
-            "param": "sponsors",
-            "name": "Project Sponsors",
-            "description": "Describe the project sponsors, i.e. entities that either directly fund it (sponsors, owners, acquirers)?",
-            "order": 2
-          },{
-            "param": "elites",
-            "name": "Elites",
-            "description": "Describe those people who have special forms of access to an entity based on their authority? Charismatic authority, legitimate authority, regulatory authority, political authority, etc?",
-            "order": 3
-          }
-        ]
+        "field_definitions": [ "alliances","clients","sponsors","elites"]
       },
       {
         "name": "Summary",
         "param": "summary",
-        "order": 6,
         "description": "The summary should give an simple introduction. One sentence to describe what the bird is and what it does; a paragraph describing its ontogeny and structure, and a paragraph summarizing its behavior and mating. One can also add information here that is not elicited by these questions, but seems important in order to understand the bird. Other kinds of information that may also be appropriate her: analytical or theoretical assessments, questions, and ideas or suggestions for transforming the schema in based on something revealed by this bird.",
-        "field_definitions_attributes": [  
-          {
-
-            "param": "summary",
-            "name": "Summary"
-          }
-        ]
+        "field_definitions": ["summary"]
       },
       {
         "name": "Metadata",
         "param": "metadata",
-        "order": 7,
-        "field_definitions_attributes": [  
-          {
-            "param": "birder_credits",
-            "name": "Author Credits",
-            "description": "Indicate authorial credit(s) for this case study"
-          }
-        ]
+        "field_definitions": ["birder_credits"]
       }
     ]
   }

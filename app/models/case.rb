@@ -4,8 +4,7 @@ class Case < ActiveRecord::Base
 
   has_many :field_values, dependent: :destroy, inverse_of: :case
   has_many :field_definitions, through: :field_values
-  has_many :field_sets,  -> { uniq }, through: :field_definitions
-  has_many :schemas, -> { uniq },through: :field_sets
+  has_many :schemas, -> { uniq },through: :field_definitions
 
   # FIXME: make this dynamic dependin on whether evaluations 
   # module is used

@@ -1,8 +1,7 @@
 class FieldValue < ActiveRecord::Base
 
   belongs_to :field_definition, inverse_of: :field_values
-  has_one :field_set, through: :field_definition
-  has_one :schema, through: :field_set
+  has_one :schema, through: :field_definition
 
   belongs_to :case, inverse_of: :field_values  
 

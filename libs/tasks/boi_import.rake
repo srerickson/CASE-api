@@ -14,6 +14,8 @@ USER_ID_MAP_FILE = "tmp/boi_import_user_id_map.json"
 
 namespace :boi_import do 
 
+  task :all => [:users, :schema, :cases, :evaluations]
+
   task :users => :environment do 
     users_map = {}
     old_users = JSON.parse IO.read(USERS_FILE)

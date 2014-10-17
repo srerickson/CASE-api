@@ -9,21 +9,19 @@ module CASE
         @schema ||= Schema.find(params[:schema_id])
       end
 
-      desc "Creates a new Field Definition in the Field Set"
+      desc "Creates a new Field Definition"
       post do
         # must be schema owner to do this
         authorize_owner!(@schema.user)
 
-        @schema.field_sets.find(params[:field_set_id])
-          .field_definitions.create!(params[:field_definition])
+        @schema.field_definitions.create!(params[:field_definition])
       end
 
       route_param :field_definition_id do
 
-        desc "Gets a Field Definition in the Field Set"
+        desc "Gets a Field Definition"
         get do
-          @schema.field_sets.find(params[:field_set_id])
-                .field_definitions.find(params[:field_definition_id])
+          @schema.field_definitions.find(params[:field_definition_id])
         end
 
         desc 'Gets the values for the field definition'
@@ -32,23 +30,21 @@ module CASE
         end
 
 
-        desc "Updates a Field Definition in the Field Set"
+        desc "Updates a Field Definition"
         put do
           # must be schema owner to do this
           authorize_owner!(@schema.user)
 
-          @schema.field_sets.find(params[:field_set_id])
-                .field_definitions.find(params[:field_definition_id])
+          @schema.field_definitions.find(params[:field_definition_id])
                 .update_attributes!(params[:field_definition])
         end
 
-        desc "Destroys a Field Definition in the Field Set"
+        desc "Destroys a Field Definition"
         delete do 
           # must be schema owner to do this
           authorize_owner!(@schema.user)
 
-          @schema.field_sets.find(params[:field_set_id])
-            .field_definitions.find(params[:field_definition_id])
+          @schema.field_definitions.find(params[:field_definition_id])
             .destroy!
         end
 

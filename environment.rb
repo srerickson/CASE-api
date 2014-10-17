@@ -3,6 +3,8 @@ $:.unshift("./app","./app/api","./app/serializers","./libs")
 ENV["CASE_SECRET"] ||= "89072a1966rf0384470918732409831734hh0987d09348579048570987230498572asdfasdf014895"
 ENV["RACK_ENV"] ||= "development"
 
+VERSION = '0.2'
+
 require 'rubygems'
 require 'grape'
 require 'grape-active_model_serializers'
