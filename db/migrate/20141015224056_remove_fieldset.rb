@@ -30,15 +30,14 @@ end
 class RemoveFieldset < ActiveRecord::Migration
   def self.up
 
+    # new columns
     add_column :field_definitions, :schema_id, :integer
     add_column :schemas, :layout, :json
 
     Schema.reset_column_information 
     FieldDefinition.reset_column_information
 
-    FieldSet.destroy_all
-
-    # connect field definitions to parent schemas
+    # relate field_definitions to parent schema
     Schema.all.each do |s|
       s.field_sets.each do |fs|
         fs.field_definitions.each do |fd|
@@ -61,7 +60,7 @@ class RemoveFieldset < ActiveRecord::Migration
   end
 
 
-  # put field_sets back together again
+  # Rewind: put field_sets back together again
   #
   def self.down
 

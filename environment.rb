@@ -23,6 +23,8 @@ config = ENV['DATABASE_URL'] || {
     adapter: 'postgresql',
     host: "localhost",
     database: "case",
+    username: "case",
+    password: "case",
     encoding: 'utf8'
   }
 
