@@ -13,10 +13,7 @@ class FieldDefinition < ActiveRecord::Base
   belongs_to :field_set, inverse_of: :field_definitions
 end
 class FieldSetSerializer < ActiveModel::Serializer
-  attributes  :name, 
-              :param, 
-              :description,
-              :field_definitions
+  attributes  :name, :param, :description, :field_definitions
   def field_definitions
     object.field_definitions.map(&:param)
   end
@@ -37,11 +34,17 @@ class RemoveFieldset < ActiveRecord::Migration
     Schema.reset_column_information 
     FieldDefinition.reset_column_information
 
+    # All field definitions need a param
+    FieldDefinition.all.each do |fd|
+      next unless fd.param.empty?
+      fd.update_attributes!(param: fd.name.parameterize.underscore + "_#{fd.id}")
+    end
+
     # relate field_definitions to parent schema
     Schema.all.each do |s|
       s.field_sets.each do |fs|
         fs.field_definitions.each do |fd|
-          fd.update_attributes(schema_id: s.id)
+          fd.update_attributes!(schema_id: s.id)
         end
       end
     end
@@ -49,7 +52,7 @@ class RemoveFieldset < ActiveRecord::Migration
     # field_sets -> layout json
     Schema.all.each do |s|
       j = ActiveModel::ArraySerializer.new(s.field_sets, each_serializer: FieldSetSerializer).to_json
-      s.update_attributes(layout: j)
+      s.update_attributes!(layout: j)
     end
 
     # remove un-used tables/columns
